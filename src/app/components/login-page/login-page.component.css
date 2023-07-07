@@ -12,7 +12,6 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-
   width: 26.04vw;
   height: 51vh;
   margin: 0 auto;
@@ -35,9 +34,9 @@
   font-size: 1.0417vw;
   font-weight: 500;
   line-height: 2.22vh;
-  border-bottom: 2px solid #FFBA34;
   padding-bottom: 1.111vh;
   margin-bottom: 3.148vh;
+  border-bottom: 2px solid #FFBA34;
 }
 
 .login-container .email,
@@ -53,22 +52,32 @@
   height: 5.0925vh;
   border-radius: 4px 4px 0px 0px;
   background: var(--light-specialbg-component-special-background-color-component, rgba(11, 31, 53, 0.07));
-  padding-left: 0.625vw;
 }
 
 .login-container .email #email,
 .login-container .password #password {
-  width: 17.01vw;
+  width: 16.385vw;
   height: 5.0925vh;
   border-radius: 4px 4px 0px 0px;
   background-color: transparent;
+  padding-left: 0.625vw;
+  border-bottom: 1px solid #B6BCC3;
+  transition: border-bottom-color 0.6s ease;
 }
 
 .login-container .email #email::placeholder,
-.login-container .password #password {
+.login-container .password #password::placeholder,
+.login-container .email #email:valid,
+.login-container .password #password:valid {
   font-size: 0.833vw;
   font-weight: 400;
   line-height: 1.85vh;
+}
+
+.login-container .email #email:focus,
+.login-container .password #password:focus {
+  border-bottom-color: #0B1F35;
+  border-bottom-width: 2px;
 }
 
 .email h5,
@@ -84,6 +93,20 @@
   height: 5.926vh;
   border-radius: 8px;
   background: radial-gradient(1314.19% 70.71% at 50.00% 50.00%, rgba(255, 186, 52, 0.83) 0%, rgba(255, 186, 52, 0.75) 58.85%, rgba(255, 229, 49, 0.66) 99.98%, rgba(251, 232, 61, 0.65) 99.99%);
+}
+
+.login-container .btn-container:hover {
+  background: radial-gradient(1314.19% 70.71% at 50.00% 50.00%, #FFBA34 0%, rgba(255, 186, 52, 0.91) 58.85%, rgba(255, 229, 49, 0.80) 99.98%, rgba(251, 232, 61, 0.78) 99.99%);
+}
+
+.login-container .btn-container:focus {
+  outline: 1px solid #6A6D79;
+  background: radial-gradient(1314.19% 70.71% at 50.00% 50.00%, #FFBA34 0%, rgba(255, 186, 52, 0.91) 58.85%, rgba(255, 229, 49, 0.80) 99.98%, rgba(251, 232, 61, 0.78) 99.99%);
+}
+
+.login-container .btn-container:active {
+  outline: 1px solid #6A6D79;
+  background: radial-gradient(1314.19% 70.71% at 50.00% 50.00%, #FFA800 0%, #FFA800 25.52%, #FFA800 32.82%, #FFA800 76.04%, rgba(255, 229, 49, 0.80) 99.98%, #FFA800 99.99%);
 }
 
 .login-container .btn-container .btn-login {
