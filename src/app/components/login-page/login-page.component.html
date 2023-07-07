@@ -3,26 +3,26 @@
     <img src="assets/img/logo.png" alt="logo" class="logo">
   </div>
 
-  <div class="login-container">
+  <form class="login-container" [formGroup]="form" (ngSubmit)="onSubmit()">
     <h1>Консоль</h1>
     <h3>Авторизация</h3>
 
     <div class="email">
       <div class="email-input-container">
-        <input type="text" placeholder="Email" name="email" id="email">
+        <input type="text" placeholder="Email" name="email" id="email" formControlName="email">
       </div>
       <h5>Введите email</h5>
     </div>
 
     <div class="password">
       <div class="password-input-container">
-        <input type="password" placeholder="Пароль" name="password" id="password">
+        <input type="password" placeholder="Пароль" name="password" id="password" formControlName="password">
       </div>
       <h5>Введите пароль</h5>
     </div>
 
     <div class="btn-container">
-      <button class="btn-login" type="button">Войти</button>
+      <button class="btn-login" type="submit" [disabled]="form.invalid || form.disabled">Войти</button>
     </div>
-  </div>
+  </form>
 </div>
