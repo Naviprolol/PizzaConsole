@@ -8,6 +8,7 @@ import { StaffPageComponent } from "./components/staff-page/staff-page.component
 
 
 const routes: Routes = [
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginPageComponent },
   { path: 'orders', component: OrdersPageComponent },
   { path: 'products', component: ProductsPageComponent },
