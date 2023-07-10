@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ReactiveFormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { OrdersPageComponent } from './components/orders-page/orders-page.component';
 import { ProductsPageComponent } from './components/products-page/products-page.component';
@@ -22,7 +22,8 @@ import { NotFoundPageComponent } from './components/not-found-page/not-found-pag
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
