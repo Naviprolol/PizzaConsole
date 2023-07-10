@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { CabinetLayoutComponent } from './cabinet-layout.component';
 import { routing } from './cabinet-layout.routing';
 import { MenuComponent } from '../components/menu/menu.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { MenuComponent } from '../components/menu/menu.component';
   ],
   imports: [
     ReactiveFormsModule,
-    routing
+    routing,
+    CommonModule
   ],
   providers: [],
 })
