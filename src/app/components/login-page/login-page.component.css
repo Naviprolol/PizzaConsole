@@ -1,3 +1,8 @@
+.login-page-container {
+  display: flex;
+  justify-content: center;
+}
+
 .logo-container {
   position: absolute;
   top: 0;
