@@ -1,1 +1,64 @@
-<p>products-page works!</p>
+<div class="products__container">
+  <h1 class="products__title">Продукты</h1>
+
+  <div class="products__input-container">
+    <div class="products__search">
+      <input class="search__input" type="text" placeholder="Поиск продукта..." name="search" id="search"
+             [(ngModel)]="searchText"
+             (input)="filterByName()">
+      <label class="search__label" for="search">Введите название или id продукта</label>
+    </div>
+    <div class="products__type-select">
+      <div class="type-select__container" (click)="toggleDropdown()">
+        <div class="type-select__placeholder"> {{ selectedType }} </div>
+        <div class="type-select__icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.9553 6.61619C17.7209 6.38185 17.403 6.25021 17.0716 6.25021C16.7401 6.25021 16.4222 6.38185 16.1878 6.61619L10.0003 12.8037L3.81281 6.61619C3.57705 6.38849 3.2613 6.2625 2.93355 6.26535C2.60581 6.2682 2.29229 6.39966 2.06053 6.63142C1.82877 6.86318 1.69731 7.17669 1.69446 7.50444C1.69162 7.83218 1.81761 8.14794 2.04531 8.38369L9.11656 15.4549C9.35097 15.6893 9.66885 15.8209 10.0003 15.8209C10.3318 15.8209 10.6496 15.6893 10.8841 15.4549L17.9553 8.38369C18.1896 8.14928 18.3213 7.8314 18.3213 7.49994C18.3213 7.16848 18.1896 6.8506 17.9553 6.61619Z" fill="#0B1F35" fill-opacity="0.34"/>
+          </svg>
+        </div>
+        <div class="type-select__dropdown" [ngClass]="{'show': isDropdownOpen}">
+          <div class="type-select__option"
+               *ngFor="let type of types"
+               (click)="toggleType(type)"
+               [ngClass]="{'type-select__option--selected': type === selectedType}">
+            {{ type }}
+          </div>
+        </div>
+      </div>
+      <h5 class="type-select__label">Выберите должность</h5>
+    </div>
+  </div>
+
+  <table class="products__table" *ngIf="isLoaded else productsNotLoaded">
+    <thead>
+      <tr class="table__header">
+        <th>ID</th>
+        <th class="align-center">Изображение</th>
+        <th>Название</th>
+        <th>Тип</th>
+        <th class="align-center table__volume-cell">Объем</th>
+        <th class="align-center">Последнее обновление</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table__row" [ngStyle]="{'background-color': colorByType[product.type]}"
+          *ngFor="let product of filteredProducts">
+        <td>{{ product.id }}</td>
+        <td class="align-center">
+          <img class="table__img" [ngSrc]="'assets/img/products/' + product.imagePath" alt="Изображение"
+               width="80" height="80">
+        </td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.type }}</td>
+        <td class="align-center table__volume-cell">
+          {{ product.volume | number:'1.0-1' }} {{ product.type === 'Прочее' ? 'шт' : 'кг'}}.
+        </td>
+        <td class="align-center">{{ product.latestChange | date:'HH:mm:ss, MMM dd, y'}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #productsNotLoaded>
+  <h2 class="products__loading-text">Загрузка...</h2>
+</ng-template>

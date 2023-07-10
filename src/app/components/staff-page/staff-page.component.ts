@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { workers as data } from 'src/app/shared/classes/data';
-import { IWorker } from 'src/app/shared/classes/interfaces';
+import { workers as data } from 'src/app/shared/test-data/workers';
+import { IWorker } from 'src/app/shared/interfaces/worker.interface';
 
 @Component({
   selector: 'app-staff-page',

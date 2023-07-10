@@ -1,0 +1,8 @@
+.container {
+  padding-right: 70px;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 200px 0 auto;
+
+  font-family: Montserrat, sans-serif;
+}
