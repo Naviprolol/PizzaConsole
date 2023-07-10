@@ -8,16 +8,23 @@ import { StaffPageComponent } from "./components/staff-page/staff-page.component
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'login', component: LoginPageComponent },
-  { path: 'orders', component: OrdersPageComponent },
-  { path: 'products', component: ProductsPageComponent },
-  { path: 'staff', component: StaffPageComponent },
-  { path: '**', component: NotFoundPageComponent },
+  {
+    path: '',
+    redirectTo: 'cabinet',
+    pathMatch: 'full',
+  },
+  {
+    path: 'cabinet',
+    loadChildren: () => import('./cabinet/cabinet-layout.module').then(m => m.CabinetLayoutModule),
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login-layout.module').then(m => m.LoginLayoutModule)  
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' })],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

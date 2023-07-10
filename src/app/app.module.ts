@@ -9,6 +9,7 @@ import { OrdersPageComponent } from './components/orders-page/orders-page.compon
 import { ProductsPageComponent } from './components/products-page/products-page.component';
 import { StaffPageComponent } from './components/staff-page/staff-page.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
+import { CabinetLayoutModule } from './cabinet/cabinet-layout.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NotFoundPageComponent } from './components/not-found-page/not-found-pag
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CabinetLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
