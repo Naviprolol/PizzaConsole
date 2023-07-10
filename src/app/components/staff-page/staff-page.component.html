@@ -1,1 +1,55 @@
-<p>staff-page works!</p>
+<div class="staff-page">
+  <div class="input-containers">
+    <div class="find">
+      <div class="find-staff-input-container">
+        <input type="text" placeholder="Поиск сотрудника..." name="find" id="find" [(ngModel)]="searchText"
+          (input)="filterByName()">
+      </div>
+      <h5>Введите фамилию сотрудника</h5>
+    </div>
+
+    <div class="title">
+      <div class="position-container">
+        <div class="position-label"> {{ selectedRoles.join(' ') }} </div>
+        <div class="settings-icon" (click)="toggleDropdown()">
+          <img src="assets/img/settings.svg" alt="settings">
+        </div>
+        <div class="position-dropdown" [ngClass]="{'show': dropdownOpen}">
+          <div class="position-option" *ngFor="let role of roles" (click)="toggleRole(role)"
+            [ngClass]="{'green': isClicked[role]}">
+            {{ role }}
+          </div>
+        </div>
+      </div>
+      <h5>Выберите должность</h5>
+    </div>
+  </div>
+
+  <div class="staff-workers">
+    <div *ngFor="let worker of filteredWorkers" class="worker" [hidden]="!selectedRoles.includes(worker.jobTitle)">
+      <div class="first-part">
+        <div class="worker-img">
+          <img src="{{worker.photo}}" alt="worker-img">
+        </div>
+        <h3> {{ worker.name + ' ' + worker.surname }} </h3>
+      </div>
+
+      <div class="worker-information">
+        <div class="worker-id spc-btwn-inf">
+          <div class="id-key key">ID:</div>
+          <div class="id-value value">{{ worker.id }}</div>
+        </div>
+
+        <div class="worker-salary spc-btwn-inf">
+          <div class="salary-key key">Зарплата:</div>
+          <div class="salary-value value">{{ worker.salary }}</div>
+        </div>
+
+        <div class="worker-jobTitle spc-btwn-inf">
+          <div class="jobTitle-key key">Должность:</div>
+          <div class="jobTitle-value value">{{ worker.jobTitle }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
