@@ -1,31 +1,44 @@
 .input-containers {
   display: flex;
-  gap: 3.594vw;
+  gap: 3.6458vw;
   margin-bottom: 9.537vh;
 }
 
-.find,
-.title {
-  width: 25.573vw;
-  height: 6.852vh;
+.find {
+  width: 20.833vw;
 }
 
-.find .find-staff-input-container,
 .title {
-  width: 25.573vw;
-  height: 5.0925vh;
-  border-radius: 4px 4px 0px 0px;
-  background: var(--light-specialbg-component-special-background-color-component, rgba(11, 31, 53, 0.07));
+  width: 15.625vw;
+  display: flex;
+  flex-direction: column;
+  gap: 0.926vh;
 }
 
-.find #find,
 .title .position-container {
-  width: 24.948vw;
-  height: 5.0925vh;
-  border-radius: 4px 4px 0px 0px;
-  background-color: transparent;
   padding-left: 0.625vw;
+  width: 100%;
+  height: 5.0925vh;
   border-bottom: 1px solid #B6BCC3;
+  border-radius: 4px 4px 0 0;
+  background: #0B1F3512;
+  cursor: pointer;
+}
+
+.find .find-staff-input-container {
+  width: 20.833vw;
+  display: flex;
+  flex-direction: column;
+  gap: 0.926vh;
+}
+
+.find #find {
+  padding-left: 0.625vw;
+  width: 100%;
+  height: 5.0925vh;
+  border-radius: 4px 4px 0 0;
+  border-bottom: 1px solid #B6BCC3;
+  background: #0B1F3512;
 }
 
 .find #find::placeholder,
@@ -33,17 +46,13 @@
 .find #find:valid,
 .title .position-container .position-label {
   color: var(--light-text-secondary-text-color-secondary, rgba(11, 31, 53, 0.70));
-  font-family: Roboto;
   font-size: 0.833vw;
   line-height: 1.852vw;
 }
 
-.find h5,
-.title h5 {
-  color: var(--light-text-secondary-text-color-secondary, rgba(11, 31, 53, 0.70));
-  font-family: Roboto;
-  font-size: 0.73vw;
-  line-height: 1.667vh;
+.title h5,
+.find-staff-input-container .search__label {
+  font-size: 0.83vw;
 }
 
 .position-container {
@@ -56,15 +65,23 @@
 
 .position-label {
   color: var(--light-text-secondary-text-color-secondary, rgba(11, 31, 53, 0.70));
-  font-family: Roboto;
   font-size: 0.834vw;
   font-weight: 400;
   line-height: 1.85vh;
 }
 
-.settings-icon {
-  cursor: pointer;
+.type-select__icon {
   padding-right: 0.625vw;
+  transition: transform 0.3s linear;
+}
+
+.type-select--active .type-select__dropdown {
+  display: inline-block;
+  opacity: 1;
+}
+
+.type-select--active .type-select__icon {
+  transform: rotateX(180deg);
 }
 
 .position-dropdown {
@@ -87,7 +104,6 @@
 .position-option {
   padding: 1.11vh 1.04vw;
   cursor: pointer;
-  font-family: Roboto;
   font-size: 0.834vw;
   font-weight: 400;
   line-height: 1.85vh;
@@ -101,7 +117,8 @@
   background-color: greenyellow;
 }
 
-.green {
+.position-option:active,
+.position-option--selected {
   background-color: greenyellow;
 }
 

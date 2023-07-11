@@ -10,12 +10,11 @@ import { IWorker } from 'src/app/shared/interfaces/worker.interface';
 export class StaffPageComponent implements OnInit {
 
   dropdownOpen: boolean = false;
-  selectedRoles: string[] = ['Курьер', 'Повар', 'Менеджер'];
-  roles: string[] = ['Курьер', 'Повар', 'Менеджер', 'Все'];
+  selectedRole: string = 'Все сотрудники';
+  roles: string[] = ['Все сотрудники', 'Курьер', 'Повар', 'Менеджер'];
   workers: IWorker[] = data;
   searchText: string = '';
   filteredWorkers: IWorker[] = [];
-  isClicked: { [key: string]: boolean } = {};
 
   constructor() { }
 
@@ -28,21 +27,7 @@ export class StaffPageComponent implements OnInit {
   }
 
   toggleRole(role: string): void {
-    this.selectedRoles = [];
-    this.isClicked = {}
-
-    if (this.selectedRoles.includes(role)) {
-      this.selectedRoles = this.selectedRoles.filter((d) => d !== role);
-    } else {
-      this.selectedRoles.push(role);
-    }
-
-    if (this.selectedRoles.includes('Все')) {
-      this.selectedRoles = ['Курьер', 'Повар', 'Менеджер'];
-    }
-
-    this.isClicked[role] = !this.isClicked[role];
-
+    this.selectedRole = role;
     this.filterWorkers();
   }
 
@@ -52,7 +37,7 @@ export class StaffPageComponent implements OnInit {
 
   filterWorkers(): void {
     this.filteredWorkers = this.workers.filter(worker =>
-      this.selectedRoles.includes(worker.jobTitle) &&
+      (this.selectedRole === 'Все сотрудники' || worker.jobTitle === this.selectedRole) &&
       (worker.surname.toLowerCase().includes(this.searchText.toLowerCase())
         || worker.name.toLowerCase().includes(this.searchText.toLowerCase())
         || this.searchText === '')
