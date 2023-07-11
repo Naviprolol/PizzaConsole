@@ -20,7 +20,7 @@ export class ProductsPageComponent implements OnInit {
   protected readonly colorByType: { [key: string]: string } = colorByType;
   protected filteredProducts: IProduct[] = [];
 
-  protected selectedRow: number = -1;
+  protected selectedProduct: number = -1;
 
   public ngOnInit(): void {
     products.forEach(product => {
@@ -53,8 +53,14 @@ export class ProductsPageComponent implements OnInit {
     );
   }
 
-  protected selectRow(productId: number): void {
-    // this.selectedRow = this.selectedRow === productId ? -1 : productId;
-    this.selectedRow = productId;
+  protected selectProduct(productId: number): void {
+    if (this.selectedProduct !== productId) {
+      this.selectedProduct = productId;
+      // document.getElementById(`volume-${productId}`)?.focus();
+    }
+  }
+
+  protected submitVolumeChange(): void {
+    this.selectedProduct = -1;
   }
 }
