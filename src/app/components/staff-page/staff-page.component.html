@@ -11,9 +11,9 @@
     </div>
 
     <div class="title">
-      <div class="position-container">
-        <div class="position-label"> {{ selectedRoles.join(' ') }} </div>
-        <div class="settings-icon" (click)="toggleDropdown()">
+      <div class="position-container" (click)="toggleDropdown()">
+        <div class="position-label"> {{ selectedRole }} </div>
+        <div class="settings-icon">
           <img src="assets/img/settings.svg" alt="settings">
         </div>
         <div class="position-dropdown" [ngClass]="{'show': dropdownOpen}">
@@ -28,7 +28,7 @@
   </div>
 
   <div class="staff-workers">
-    <div *ngFor="let worker of filteredWorkers" class="worker" [hidden]="!selectedRoles.includes(worker.jobTitle)">
+    <div *ngFor="let worker of filteredWorkers" class="worker">
       <div class="first-part">
         <div class="worker-img">
           <img src="{{worker.photo}}" alt="worker-img">
