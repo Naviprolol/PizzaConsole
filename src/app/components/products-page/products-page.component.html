@@ -1,6 +1,4 @@
 <div class="products__container">
-  <h1 class="products__title">Продукты</h1>
-
   <div class="products__input-container">
     <div class="products__search">
       <input class="search__input" type="text" placeholder="Поиск продукта..." name="search" id="search"
@@ -45,7 +43,7 @@
           *ngFor="let product of filteredProducts">
         <td>{{ product.id }}</td>
         <td class="align-center">
-          <img class="table__img" [ngSrc]="'assets/img/products/' + product.imagePath" alt="Изображение"
+          <img class="table__img" [attr.src]="'assets/img/products/' + product.imagePath" alt="Изображение"
                width="80" height="80">
         </td>
         <td>{{ product.name }}</td>
