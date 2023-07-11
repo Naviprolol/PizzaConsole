@@ -11,11 +11,6 @@ const routes: Routes = [
         component: CabinetLayoutComponent,
         children: [
             {
-                path: '',
-                component: OrdersPageComponent,
-                pathMatch: 'full'
-            },
-            {
                 path: 'staff',
                 component: StaffPageComponent
             },
