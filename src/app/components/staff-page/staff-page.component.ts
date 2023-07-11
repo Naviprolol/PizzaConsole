@@ -11,11 +11,10 @@ export class StaffPageComponent implements OnInit {
 
   dropdownOpen: boolean = false;
   selectedRole: string = 'Все сотрудники';
-  roles: string[] = ['Курьер', 'Повар', 'Менеджер', 'Все сотрудники'];
+  roles: string[] = ['Все сотрудники', 'Курьер', 'Повар', 'Менеджер'];
   workers: IWorker[] = data;
   searchText: string = '';
   filteredWorkers: IWorker[] = [];
-  isClicked: { [key: string]: boolean } = {};
 
   constructor() { }
 
@@ -29,10 +28,6 @@ export class StaffPageComponent implements OnInit {
 
   toggleRole(role: string): void {
     this.selectedRole = role;
-    // this.isClicked = {}
-
-    // this.isClicked[role] = !this.isClicked[role];
-
     this.filterWorkers();
   }
 
