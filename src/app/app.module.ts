@@ -9,7 +9,6 @@ import { ProductsPageComponent } from './components/products-page/products-page.
 import { StaffPageComponent } from './components/staff-page/staff-page.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { NavComponent } from './components/nav/nav.component';
-import { CommonModule, NgOptimizedImage } from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -25,9 +24,7 @@ import { CommonModule, NgOptimizedImage } from "@angular/common";
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule,
-    NgOptimizedImage,
-    CommonModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
