@@ -1,4 +1,4 @@
-import { IWorker } from "./interfaces";
+import { IWorker } from "../interfaces/worker.interface";
 
 export const workers: IWorker[] = [
   {
