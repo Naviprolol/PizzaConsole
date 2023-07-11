@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import { IProduct } from "../../shared/interfaces/product.interface";
 import { IOrder } from 'src/app/shared/interfaces/order.interface';
 import { orders } from 'src/app/shared/test-data/orders';
 import { colorByType } from 'src/app/shared/orders-info';
@@ -42,7 +41,8 @@ export class OrdersPageComponent implements OnInit {
   private filterProducts(): void {
     this.filteredProducts = orders.filter(order =>
       (this.selectedType === 'Все статусы' || order.status === this.selectedType)
-      && (this.searchText === '' || (order.name + order.surname).toLowerCase().includes(this.searchText.toLowerCase()))
+      && (this.searchText === '' || (order.name + order.surname).toLowerCase().includes(this.searchText.toLowerCase()) 
+      || String(order.id).toLowerCase().includes(this.searchText.toLowerCase()))
     );
   }
 }
