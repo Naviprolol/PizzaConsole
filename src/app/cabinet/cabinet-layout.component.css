@@ -4,6 +4,7 @@
 
 .page__content {
     margin: 50px 100px;
+    width: 100%;
 }
 
 .page__title {
