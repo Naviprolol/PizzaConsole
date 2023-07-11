@@ -18,7 +18,6 @@ import { NavComponent } from './components/nav/nav.component';
     ProductsPageComponent,
     StaffPageComponent,
     NotFoundPageComponent,
-    NavComponent
   ],
     imports: [
         BrowserModule,
