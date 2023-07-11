@@ -17,8 +17,10 @@ export class ProductsPageComponent implements OnInit {
   protected selectedType: string = 'Все типы продуктов';
 
   protected readonly types: string[] = ['Все типы продуктов', ...Object.keys(colorByType)];
-  protected readonly colorByType = colorByType;
+  protected readonly colorByType: { [key: string]: string } = colorByType;
   protected filteredProducts: IProduct[] = [];
+
+  protected selectedRow: number = -1;
 
   public ngOnInit(): void {
     products.forEach(product => {
@@ -43,9 +45,16 @@ export class ProductsPageComponent implements OnInit {
   }
 
   private filterProducts(): void {
+    const filteringById = this.searchText.match("^[0-9]+$");
     this.filteredProducts = products.filter(product =>
       (this.selectedType === 'Все типы продуктов' || product.type === this.selectedType)
-      && (this.searchText === '' || product.name.toLowerCase().includes(this.searchText.toLowerCase()))
+      && (!filteringById && (this.searchText === '' || product.name.toLowerCase().includes(this.searchText.toLowerCase()))
+        || filteringById && Number(this.searchText) === product.id)
     );
+  }
+
+  protected selectRow(productId: number): void {
+    // this.selectedRow = this.selectedRow === productId ? -1 : productId;
+    this.selectedRow = productId;
   }
 }
