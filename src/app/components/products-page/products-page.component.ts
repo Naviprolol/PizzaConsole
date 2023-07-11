@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IProduct } from "../../shared/interfaces/product.interface";
 import { products } from "../../shared/test-data/products";
-import { productsInfo, colorByType } from "../../shared/products-info";
+import { colorByType, productsInfo } from "../../shared/products-info";
 
 
 @Component({
@@ -20,9 +20,11 @@ export class ProductsPageComponent implements OnInit {
   protected readonly colorByType: { [key: string]: string } = colorByType;
   protected filteredProducts: IProduct[] = [];
 
-  protected selectedProduct: number = -1;
+  protected hoveredProductId: number = -1;
+  protected selectedProductId: number = -1;
 
   public ngOnInit(): void {
+    // ... запрос на получение информации о продуктах
     products.forEach(product => {
       product.imagePath = productsInfo[product.name]['imagePath'];
       // product.type = productsInfo[product.name]['type'];
@@ -53,14 +55,29 @@ export class ProductsPageComponent implements OnInit {
     );
   }
 
+  protected rowMouseEnter(productId: number): void {
+    if (this.hoveredProductId !== productId) {
+      this.hoveredProductId = productId;
+    }
+  }
+
+  protected rowMouseLeave(): void {
+    this.hoveredProductId = -1;
+  }
+
   protected selectProduct(productId: number): void {
-    if (this.selectedProduct !== productId) {
-      this.selectedProduct = productId;
+    if (this.selectedProductId !== productId) {
+      this.selectedProductId = productId;
       // document.getElementById(`volume-${productId}`)?.focus();
     }
   }
 
+  protected dismissVolumeChange(): void {
+    this.selectedProductId = -1;
+  }
+
   protected submitVolumeChange(): void {
-    this.selectedProduct = -1;
+    // ... запрос на обновление объёма
+    this.dismissVolumeChange();
   }
 }

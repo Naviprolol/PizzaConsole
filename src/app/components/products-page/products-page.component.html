@@ -42,9 +42,11 @@
     </thead>
     <tbody>
       <tr class="table__row"
-          [ngStyle]="{'background-color': colorByType[product.type],
-            'cursor': product.id === selectedProduct ? 'initial' : 'pointer'}"
+          [ngStyle]="{'background-color': colorByType[product.type] + (product.id === hoveredProductId ? 'AA' : 'FF'),
+            'cursor': product.id === selectedProductId ? 'initial' : 'pointer'}"
           (click)="selectProduct(product.id)"
+          (mouseenter)="rowMouseEnter(product.id)"
+          (mouseleave)="rowMouseLeave()"
           *ngFor="let product of filteredProducts">
         <td>{{ product.id }}</td>
         <td class="align-center">
@@ -54,22 +56,24 @@
         <td>{{ product.name }}</td>
         <td>{{ product.type }}</td>
         <td class="align-center table__volume-cell">
-          <ng-container *ngIf="product.id !== selectedProduct">
-            {{ product.volume | number:'1.0-1' }} {{ product.type === 'Прочее' ? 'шт' : 'кг'}}.
+          <ng-container *ngIf="product.id !== selectedProductId">
+            {{ product.volume | number:'1.0-1' }} {{ product.type | volumeCalculus }}.
           </ng-container>
-          <form class="volume-changer__form" *ngIf="product.id === selectedProduct">
+          <form class="volume-changer__form" *ngIf="product.id === selectedProductId">
+            <button class="volume-changer__dismiss" (click)="dismissVolumeChange()" appClickStopPropagation>✕</button>
             <div class="volume-changer__container">
               <p class="volume-changer__placeholder">
-                {{ product.volume | number:'1.0-1' }} {{ product.type === 'Прочее' ? 'шт' : 'кг'}}
+                {{ product.volume | number:'1.0-1' }} {{ product.type | volumeCalculus }}
               </p>
               <p class="volume-changer__placeholder">+</p>
               <input class="volume-changer__input" type="number" min="0" max="1000"
                      placeholder="" name="volume" required [id]="'volume-' + product.id">
+              <p class="volume-changer__placeholder">{{ product.type | volumeCalculus }}</p>
             </div>
-            <button class="volume-changer__submit" type="submit" (click)="submitVolumeChange()">✓</button>
+            <button class="volume-changer__submit" (click)="submitVolumeChange()" appClickStopPropagation>✓</button>
           </form>
         </td>
-        <td class="align-center">{{ product.latestChange | date:'HH:mm:ss, MMM dd, y'}}</td>
+        <td class="align-center">{{ product.latestChange | date:'HH:mm:ss, dd MMM, y'}}</td>
       </tr>
     </tbody>
   </table>

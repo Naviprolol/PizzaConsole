@@ -9,6 +9,8 @@ import { ProductsPageComponent } from './components/products-page/products-page.
 import { StaffPageComponent } from './components/staff-page/staff-page.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { NavComponent } from './components/nav/nav.component';
+import { VolumeCalculusPipe } from "./shared/pipes/volumeCalculus.pipe";
+import { ClickStopPropagationDirective } from './shared/directives/click-stop-propagation.directive';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { NavComponent } from './components/nav/nav.component';
     ProductsPageComponent,
     StaffPageComponent,
     NotFoundPageComponent,
+    VolumeCalculusPipe,
+    ClickStopPropagationDirective,
   ],
     imports: [
         BrowserModule,
