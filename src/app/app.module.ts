@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
@@ -9,7 +8,7 @@ import { OrdersPageComponent } from './components/orders-page/orders-page.compon
 import { ProductsPageComponent } from './components/products-page/products-page.component';
 import { StaffPageComponent } from './components/staff-page/staff-page.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
-import { CabinetLayoutModule } from './cabinet/cabinet-layout.module';
+import { NavComponent } from './components/nav/nav.component';
 
 @NgModule({
   declarations: [
@@ -18,13 +17,13 @@ import { CabinetLayoutModule } from './cabinet/cabinet-layout.module';
     OrdersPageComponent,
     ProductsPageComponent,
     StaffPageComponent,
-    NotFoundPageComponent
+    NotFoundPageComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    CabinetLayoutModule,
     FormsModule
   ],
   providers: [],

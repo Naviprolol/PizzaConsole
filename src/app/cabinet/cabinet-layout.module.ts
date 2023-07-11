@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [
     CabinetLayoutComponent,
-    MenuComponent
+    MenuComponent,
   ],
   imports: [
     ReactiveFormsModule,

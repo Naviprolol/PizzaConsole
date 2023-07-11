@@ -1,10 +1,48 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import { IProduct } from "../../shared/interfaces/product.interface";
+import { IOrder } from 'src/app/shared/interfaces/order.interface';
+import { orders } from 'src/app/shared/test-data/orders';
+import { colorByType } from 'src/app/shared/orders-info';
+
 
 @Component({
   selector: 'app-orders-page',
   templateUrl: './orders-page.component.html',
-  styleUrls: ['./orders-page.component.css']
+  styleUrls: ['../products-page/products-page.component.css', './orders-page.component.css']
 })
-export class OrdersPageComponent {
+export class OrdersPageComponent implements OnInit {
+  protected isDropdownOpen: boolean = false;
+  protected isLoaded: boolean = false;
 
+  protected searchText: string = '';
+  protected selectedType: string = 'Все статусы';
+
+  protected readonly types: string[] = ['Все статусы', ...Object.keys(colorByType)];
+  protected readonly colorByType = colorByType;
+  protected filteredProducts: IOrder[] = [];
+
+  public ngOnInit(): void {
+    this.filteredProducts = orders;
+    this.isLoaded = true;
+  }
+
+  protected toggleDropdown(): void {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  protected toggleType(type: string): void {
+    this.selectedType = type;
+    this.filterProducts();
+  }
+
+  protected filterByName(): void {
+    this.filterProducts();
+  }
+
+  private filterProducts(): void {
+    this.filteredProducts = orders.filter(order =>
+      (this.selectedType === 'Все статусы' || order.status === this.selectedType)
+      && (this.searchText === '' || (order.name + order.surname).toLowerCase().includes(this.searchText.toLowerCase()))
+    );
+  }
 }
