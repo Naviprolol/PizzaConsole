@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { workers as data } from 'src/app/shared/test-data/workers';
 import { IWorker } from 'src/app/shared/interfaces/worker.interface';
+import { StaffService } from 'src/app/services/staff.service';
 
 @Component({
   selector: 'app-staff-page',
@@ -12,13 +13,29 @@ export class StaffPageComponent implements OnInit {
   dropdownOpen: boolean = false;
   selectedRole: string = 'Все сотрудники';
   roles: string[] = ['Все сотрудники', 'Курьер', 'Повар', 'Менеджер'];
-  workers: IWorker[] = data;
+  workers: IWorker[] = []
   searchText: string = '';
   filteredWorkers: IWorker[] = [];
 
-  constructor() { }
+  constructor(private staffService: StaffService) { }
 
   ngOnInit(): void {
+    this.staffService.getAllChefs().subscribe(chefs => {
+      for (let chef of chefs) {
+        chef.jobTitle = 'Повар'
+        this.workers.push(chef)
+      }
+    })
+
+    this.staffService.getAllCouriers().subscribe(couriers => {
+      for (let courier of couriers) {
+        courier.jobTitle = 'Курьер'
+        this.workers.push(courier)
+      }
+    })
+
+    console.log(this.workers)
+
     this.filteredWorkers = this.workers;
   }
 
@@ -38,8 +55,7 @@ export class StaffPageComponent implements OnInit {
   filterWorkers(): void {
     this.filteredWorkers = this.workers.filter(worker =>
       (this.selectedRole === 'Все сотрудники' || worker.jobTitle === this.selectedRole) &&
-      (worker.surname.toLowerCase().includes(this.searchText.toLowerCase())
-        || worker.name.toLowerCase().includes(this.searchText.toLowerCase())
+      (worker.first_name.toLowerCase().includes(this.searchText.toLowerCase()) // worker.surname.toLowerCase().includes(this.searchText.toLowerCase()) ||
         || this.searchText === '')
     );
   }

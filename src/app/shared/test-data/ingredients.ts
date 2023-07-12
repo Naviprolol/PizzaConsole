@@ -5,14 +5,14 @@ export const ingredients: IIngredient[] = [
     id: 0,
     name: 'Сыр Моцарелла',
     type: 'Сыры',
-    volume: 14.5,
+    volume: 1,
     //latestChange: new Date(2023, 7, 23, 18),
   },
   {
     id: 1,
     name: 'Коробки под пиццу',
     type: 'Прочее',
-    volume: 30,
+    volume: 0,
     //latestChange: new Date(2023, 4, 11, 10),
   },
   {

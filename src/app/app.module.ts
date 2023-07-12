@@ -12,6 +12,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { VolumeCalculusPipe } from "./shared/pipes/volumeCalculus.pipe";
 import { ClickStopPropagationDirective } from './shared/directives/click-stop-propagation.directive';
 import { HttpClientModule } from "@angular/common/http";
+import { NotificationsPageComponent } from './components/notifications-page/notifications-page.component';
 
 @NgModule({
   declarations: [
@@ -24,13 +25,13 @@ import { HttpClientModule } from "@angular/common/http";
     VolumeCalculusPipe,
     ClickStopPropagationDirective,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        ReactiveFormsModule,
-        FormsModule,
-        HttpClientModule,
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

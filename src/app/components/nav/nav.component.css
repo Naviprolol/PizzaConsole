@@ -51,6 +51,15 @@
   fill: #ffffff;
 }
 
+.link-list__item--active path.red {
+  fill: red;
+}
+
+.link-list__item--active path.yellow {
+  fill: yellow;
+}
+
+
 .link-list__item:hover,
 .link-list__item:focus,
 .link-list__item:active {
