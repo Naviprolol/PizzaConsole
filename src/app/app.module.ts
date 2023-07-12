@@ -24,6 +24,7 @@ import { NotificationsPageComponent } from './components/notifications-page/noti
     NotFoundPageComponent,
     VolumeCalculusPipe,
     ClickStopPropagationDirective,
+    NotificationsPageComponent,
   ],
   imports: [
     BrowserModule,
