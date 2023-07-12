@@ -1,43 +1,55 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
+import {Observable} from "rxjs";
+import {AddressDto} from "../shared/dto/address.dto";
+import {WorkerDto} from "../shared/dto/worker.dto";
+import {IngredientProductDto} from "../shared/dto/ingredient-product.dto";
+import {IngredientDto} from "../shared/dto/ingredient.dto";
+import {PutResponseDto} from "../shared/dto/put-response.dto";
+import {OrderDto} from "../shared/dto/order.dto";
+import {ProductOrderDto} from "../shared/dto/product-order.dto";
+import {ProductDto} from "../shared/dto/product.dto";
+import {PromotionDto} from "../shared/dto/promotion.dto";
+import {UserDto} from "../shared/dto/user.dto";
 
 @Injectable({
   providedIn: 'root',
 })
 export class ConsoleApiService {
-  private readonly serverUrl: string = 'https://pizza-console.onrender.com/api'
+  private readonly _serverUrl: string = 'https://pizza-console.onrender.com/api'
 
   public constructor(private httpClient: HttpClient) {}
 
   // Address
-  public getAddressByID(params: { id: number }): any {
-    return this.httpClient.get<any>(`${this.serverUrl}/address/getAddressByID`, {
+  public getAddressByID(params: { id: number }): Observable<AddressDto> {
+    return this.httpClient.get<AddressDto>(`${this._serverUrl}/address/getAddressByID`, {
       params: { ...params }
     });
   }
 
-  public getAddressByUserID(params: { id_user: number }): any {
-    return this.httpClient.get<any>(`${this.serverUrl}/address/getAddressByUserID`, {
+  public getAddressByUserID(params: { id_user: number }): Observable<AddressDto> {
+    return this.httpClient.get<AddressDto>(`${this._serverUrl}/address/getAddressByUserID`, {
       params: { ...params }
     });
   }
 
 
   // Chefs
-  public getAllChefs(): any {
-    return this.httpClient.get<any>(`${this.serverUrl}/chefs/getAllChefs`);
+  public getAllChefs(): Observable<WorkerDto[]> {
+    return this.httpClient.get<WorkerDto[]>(`${this._serverUrl}/chefs/getAllChefs`);
   }
 
 
   // Couriers
-  public getAllCouriers(): any {
-    return this.httpClient.get<any>(`${this.serverUrl}/couriers/getAllCouriers`);
+  public getAllCouriers(): Observable<WorkerDto[]> {
+    return this.httpClient.get<WorkerDto[]>(`${this._serverUrl}/couriers/getAllCouriers`);
   }
 
 
   // IngredientProducts
-  public getIngredientProductsByIngredientID(params: { id_ingredient: number }): any {
-    return this.httpClient.get<any>(`${this.serverUrl}/ingredientProducts/getIngredientProductsByIngredientID`,
+  public getIngredientProductsByIngredientID(params: { id_ingredient: number }): Observable<IngredientProductDto> {
+    return this.httpClient.get<IngredientProductDto>(
+      `${this._serverUrl}/ingredientProducts/getIngredientProductsByIngredientID`,
       {
         params: { ...params },
       });
@@ -45,12 +57,12 @@ export class ConsoleApiService {
 
 
   // Ingredients
-  public getIngredients(): any {
-    return this.httpClient.get<any>(`${this.serverUrl}/ingredients/getIngredients`);
+  public getIngredients(): Observable<IngredientDto[]> {
+    return this.httpClient.get<IngredientDto[]>(`${this._serverUrl}/ingredients/getIngredients`);
   }
 
-  public changeIngredientCountByID(params: { delta_count: number, id: number }): any {
-    return this.httpClient.put<any>(`${this.serverUrl}/ingredients/changeIngredientCountByID`,
+  public changeIngredientCountByID(params: { delta_count: number, id: number }): Observable<PutResponseDto> {
+    return this.httpClient.put<PutResponseDto>(`${this._serverUrl}/ingredients/changeIngredientCountByID`,
       {
         params: { ...params },
       });
@@ -58,19 +70,19 @@ export class ConsoleApiService {
 
 
   // Orders
-  public getAllOrders(): any {
-    return this.httpClient.get<any>(`${this.serverUrl}/orders/getAllOrders`);
+  public getAllOrders(): Observable<OrderDto[]> {
+    return this.httpClient.get<OrderDto[]>(`${this._serverUrl}/orders/getAllOrders`);
   }
 
-  public getOrderByID(params: { id: number }): any {
-    return this.httpClient.get<any>(`${this.serverUrl}/orders/getOneOrderByID`,
+  public getOrderByID(params: { id: number }): Observable<OrderDto> {
+    return this.httpClient.get<OrderDto>(`${this._serverUrl}/orders/getOneOrderByID`,
       {
         params: { ...params },
       });
   }
 
-  public changeOrderStatusByID(params: { id: number, status: string }): any {
-    return this.httpClient.put<any>(`${this.serverUrl}/orders/changeStatucByID`,
+  public changeOrderStatusByID(params: { id: number, status: string }): Observable<PutResponseDto> {
+    return this.httpClient.put<PutResponseDto>(`${this._serverUrl}/orders/changeStatucByID`,
       {
         params: { ...params },
       });
@@ -78,36 +90,36 @@ export class ConsoleApiService {
 
 
   // ProductOrders
-  public getAllProductOrdersByOrderID(params: { id_order: number }): any {
-    return this.httpClient.get<any>(`${this.serverUrl}/getAllProductOrdersByOrderID`,
+  public getAllProductOrdersByOrderID(params: { id_order: number }): Observable<ProductOrderDto[]> {
+    return this.httpClient.get<ProductOrderDto[]>(`${this._serverUrl}/getAllProductOrdersByOrderID`,
       {
         params: { ...params },
       });
   }
 
-  public getOneProductOrderByOrderIDAndProductID(params: { id_order: number, id_product: number }): any {
-    return this.httpClient.get<any>(`${this.serverUrl}/getOneProductOrderByOrderIDAndProductID`,
+  public getProductOrderByOrderIDAndProductID(params: { id_order: number, id_product: number }): Observable<ProductOrderDto> {
+    return this.httpClient.get<ProductOrderDto>(`${this._serverUrl}/getOneProductOrderByOrderIDAndProductID`,
       {
         params: { ...params },
       });
   }
 
-  public deleteOneProductOrderByOrderIdAndProductID(params: { id_order: number, id_product: number }): any {
-    return this.httpClient.delete<any>(`${this.serverUrl}/deleteOneProductOrderByOrderIdAndProductID`,
+  public deleteProductOrderByOrderIdAndProductID(params: { id_order: number, id_product: number }): Observable<PutResponseDto> {
+    return this.httpClient.delete<PutResponseDto>(`${this._serverUrl}/deleteOneProductOrderByOrderIdAndProductID`,
       {
         params: { ...params },
       });
   }
 
-  public deleteProductOrdersByOrderID(params: { id_order: number }): any {
-    return this.httpClient.delete<any>(`${this.serverUrl}/deleteProductOrdersByOrderID`,
+  public deleteProductOrdersByOrderID(params: { id_order: number }): Observable<PutResponseDto> {
+    return this.httpClient.delete<PutResponseDto>(`${this._serverUrl}/deleteProductOrdersByOrderID`,
       {
         params: { ...params },
       });
   }
 
-  public changeCountByOrderIDAndProductID(params: { id_order: number, id_product: number }): any {
-    return this.httpClient.put<any>(`${this.serverUrl}/changeCountByOrderIDAndProductID`,
+  public changeCountByOrderIDAndProductID(params: { id_order: number, id_product: number }): Observable<PutResponseDto> {
+    return this.httpClient.put<PutResponseDto>(`${this._serverUrl}/changeCountByOrderIDAndProductID`,
       {
         params: { ...params },
       });
@@ -115,19 +127,19 @@ export class ConsoleApiService {
 
 
   // Products
-  public getProducts(): any {
-    return this.httpClient.get<any>(`${this.serverUrl}/products/getProducts`);
+  public getProducts(): Observable<ProductDto[]> {
+    return this.httpClient.get<ProductDto[]>(`${this._serverUrl}/products/getProducts`);
   }
 
-  public getProductByID(params: { id: number }): any {
-    return this.httpClient.get<any>(`${this.serverUrl}/products/getProductByID`,
+  public getProductByID(params: { id: number }): Observable<ProductDto> {
+    return this.httpClient.get<ProductDto>(`${this._serverUrl}/products/getProductByID`,
       {
         params: { ...params },
       });
   }
 
-  public changeProductAvailabilityByID(params: { id: number, availability: boolean}): any {
-    return this.httpClient.put<any>(`${this.serverUrl}/products/changeProductAvailabilityByID`,
+  public changeProductAvailabilityByID(params: { id: number, availability: boolean}): Observable<PutResponseDto> {
+    return this.httpClient.put<PutResponseDto>(`${this._serverUrl}/products/changeProductAvailabilityByID`,
       {
         params: { ...params },
       });
@@ -135,19 +147,19 @@ export class ConsoleApiService {
 
 
   // Promotions
-  public getPromotions(): any {
-    return this.httpClient.get<any>(`${this.serverUrl}/promotions/getPromotions`);
+  public getPromotions(): Observable<PromotionDto[]> {
+    return this.httpClient.get<PromotionDto[]>(`${this._serverUrl}/promotions/getPromotions`);
   }
 
-  public changePromotionNameByID(params: { id: number, newName: string }): any {
-    return this.httpClient.put<any>(`${this.serverUrl}/promotions/changePromotionNameByID`,
+  public changePromotionNameByID(params: { id: number, newName: string }): Observable<PutResponseDto> {
+    return this.httpClient.put<PutResponseDto>(`${this._serverUrl}/promotions/changePromotionNameByID`,
       {
         params: { ...params },
       });
   }
 
-  public changePromotionDescriptionByID(params: { id: number, newDescription: string}): any {
-    return this.httpClient.put<any>(`${this.serverUrl}/promotions/changePromotionDescriptionByID`,
+  public changePromotionDescriptionByID(params: { id: number, newDescription: string}): Observable<PutResponseDto> {
+    return this.httpClient.put<PutResponseDto>(`${this._serverUrl}/promotions/changePromotionDescriptionByID`,
       {
         params: { ...params },
       });
@@ -156,50 +168,57 @@ export class ConsoleApiService {
 
   // ConsoleUsers
   public registration(params: { first_name: string, surname: string, middle_surname: string,
-    phone: number | string, email: string, password: string}): any {
-    return this.httpClient.post<any>(`${this.serverUrl}/consoleUsers/registration`,
+    phone: number | string, email: string, password: string}): Observable<string> {
+    return this.httpClient.post<string>(`${this._serverUrl}/consoleUsers/registration`,
       {
         params: { ...params },
       });
   }
 
-  public login(params: { email: string, password: string}): any {
-    return this.httpClient.post<any>(`${this.serverUrl}/consoleUsers/login`,
+  public login(params: { email: string, password: string}): Observable<string> {
+    return this.httpClient.post<string>(`${this._serverUrl}/consoleUsers/login`,
       {
         params: { ...params },
       });
   }
 
-  public getUserByID(params: { id: number }): any {
-    return this.httpClient.get<any>(`${this.serverUrl}/consoleUsers/getByID`,
+  public auth(params: { email: string, password: string}): Observable<string> {
+    return this.httpClient.get<string>(`${this._serverUrl}/consoleUsers/auth`,
       {
         params: { ...params },
       });
   }
 
-  public getUserByPhone(params: { phone: number | string}): any {
-    return this.httpClient.get<any>(`${this.serverUrl}/consoleUsers/getByPhone`,
+  public getUserByID(params: { id: number }): Observable<UserDto> {
+    return this.httpClient.get<UserDto>(`${this._serverUrl}/consoleUsers/getByID`,
       {
         params: { ...params },
       });
   }
 
-  public getUserByEmail(params: { email: string}): any {
-    return this.httpClient.get<any>(`${this.serverUrl}/consoleUsers/getByEmail`,
+  public getUserByPhone(params: { phone: number | string}): Observable<UserDto> {
+    return this.httpClient.get<UserDto>(`${this._serverUrl}/consoleUsers/getByPhone`,
       {
         params: { ...params },
       });
   }
 
-  public changePhoneByPhone(params: { oldPhone: number | string, newPhone: number | string }): any {
-    return this.httpClient.put<any>(`${this.serverUrl}/consoleUsers/changePhoneByPhone`,
+  public getUserByEmail(params: { email: string}): Observable<UserDto> {
+    return this.httpClient.get<UserDto>(`${this._serverUrl}/consoleUsers/getByEmail`,
       {
         params: { ...params },
       });
   }
 
-  public changeEmailByPhone(params: { phone: number | string, newEmail: string}): any {
-    return this.httpClient.put<any>(`${this.serverUrl}/consoleUsers/changeEmailByPhone`,
+  public changePhoneByPhone(params: { oldPhone: number | string, newPhone: number | string }): Observable<UserDto> {
+    return this.httpClient.put<UserDto>(`${this._serverUrl}/consoleUsers/changePhoneByPhone`,
+      {
+        params: { ...params },
+      });
+  }
+
+  public changeEmailByPhone(params: { phone: number | string, newEmail: string}): Observable<UserDto> {
+    return this.httpClient.put<UserDto>(`${this._serverUrl}/consoleUsers/changeEmailByPhone`,
       {
         params: { ...params },
       });
