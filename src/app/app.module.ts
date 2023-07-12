@@ -11,6 +11,7 @@ import { NotFoundPageComponent } from './components/not-found-page/not-found-pag
 import { NavComponent } from './components/nav/nav.component';
 import { VolumeCalculusPipe } from "./shared/pipes/volumeCalculus.pipe";
 import { ClickStopPropagationDirective } from './shared/directives/click-stop-propagation.directive';
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ClickStopPropagationDirective } from './shared/directives/click-stop-pr
         AppRoutingModule,
         ReactiveFormsModule,
         FormsModule,
+        HttpClientModule,
     ],
   providers: [],
   bootstrap: [AppComponent]

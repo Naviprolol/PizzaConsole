@@ -21,6 +21,8 @@ export const ingredientsInfo: { [key: string]: { [key: string]: string } } = {
   'Оливковое масло': { imagePath: 'olive-oil.png', type: 'Масла'},
   'Масло чесночное (бокс)': { imagePath: 'garlic-oil.png', type: 'Масла'},
   'Масло перцовое (бокс)': { imagePath: 'pepper-oil.png', type: 'Масла'},
+  // тест
+  'Сыр': { imagePath: 'mozzarella-cheese.png', type: 'Сыры'},
 }
 
 export const colorByType: { [key: string]: string } = {

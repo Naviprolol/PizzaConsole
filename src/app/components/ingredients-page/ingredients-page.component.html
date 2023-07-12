@@ -52,11 +52,11 @@
           <img class="table__img" [attr.src]="'assets/img/ingredients/' + ingredient.imagePath" alt="Изображение"
                width="80" height="80">
         </td>
-        <td>{{ ingredient.name }}</td>
+        <td>{{ ingredient.title }}</td>
         <td>{{ ingredient.type }}</td>
         <td class="align-center table__volume-cell">
           <ng-container *ngIf="ingredient.id !== selectedIngredientId">
-            {{ ingredient.volume | number:'1.0-1' }} {{ ingredient.type | volumeCalculus }}.
+            {{ ingredient.count | number:'1.0-1' }} {{ ingredient.type | volumeCalculus }}.
           </ng-container>
           <form class="volume-changer__form"
                 (ngSubmit)="submitVolumeChange($event, ingredient.id)"
@@ -64,7 +64,7 @@
             <button class="volume-changer__dismiss" (click)="dismissVolumeChange()" appClickStopPropagation>✕</button>
             <div class="volume-changer__container">
               <p class="volume-changer__placeholder">
-                {{ ingredient.volume | number:'1.0-1' }} {{ ingredient.type | volumeCalculus }}
+                {{ ingredient.count | number:'1.0-1' }} {{ ingredient.type | volumeCalculus }}
               </p>
               <p class="volume-changer__placeholder">+</p>
               <input class="volume-changer__input" type="number" min="0" max="1000"

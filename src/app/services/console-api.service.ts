@@ -20,6 +20,8 @@ export class ConsoleApiService {
 
   public constructor(private httpClient: HttpClient) {}
 
+  // СЕРВИС НЕ ПРОТЕСТИРОВАН ПОЛНОСТЬЮ
+
   // Address
   public getAddressByID(params: { id: number }): Observable<AddressDto> {
     return this.httpClient.get<AddressDto>(`${this._serverUrl}/address/getAddressByID`, {

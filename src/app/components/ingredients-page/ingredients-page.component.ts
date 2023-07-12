@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { IIngredient } from "../../shared/interfaces/ingredient.interface";
-import { ingredients } from "../../shared/test-data/ingredients";
+// import { IIngredient } from "../../shared/interfaces/ingredient.interface";
+// import { ingredients } from "../../shared/test-data/ingredients";
 import { colorByType, ingredientsInfo } from "../../shared/ingredients-info";
+import {ConsoleApiService} from "../../services/console-api.service";
+import {firstValueFrom} from "rxjs";
+import {IngredientDto} from "../../shared/dto/ingredient.dto";
 
 
 @Component({
@@ -18,22 +21,27 @@ export class IngredientsPageComponent implements OnInit {
 
   protected readonly types: string[] = ['Все типы ингредиентов', ...Object.keys(colorByType)];
   protected readonly colorByType: { [key: string]: string } = colorByType;
-  protected filteredIngredients: IIngredient[] = [];
+  protected ingredients: IngredientDto[] = [];
+  protected filteredIngredients: IngredientDto[] = [];
 
   protected hoveredIngredientId: number = -1;
   protected selectedIngredientId: number = -1;
 
+  constructor(private _consoleApi: ConsoleApiService) {}
+
   public ngOnInit(): void {
-    // ... запрос на получение информации о продуктах
+    firstValueFrom(this._consoleApi.getIngredients())
+      .then(ingredients => {
+        this.ingredients = ingredients;
+        this.ingredients.sort((a: IngredientDto, b: IngredientDto) => a.id - b.id);
+        this.ingredients.forEach(ingredient => {
+          ingredient.imagePath = ingredientsInfo[ingredient.title]['imagePath'];
+          ingredient.type = ingredientsInfo[ingredient.title]['type'];
+        });
 
-    ingredients.sort((a: IIngredient, b: IIngredient) => a.id - b.id);
-    ingredients.forEach(ingredient => {
-      ingredient.imagePath = ingredientsInfo[ingredient.name]['imagePath'];
-      // ingredient.type = productsInfo[ingredient.name]['type'];
-    });
-
-    this.filteredIngredients = ingredients;
-    this.isLoaded = true;
+        this.filteredIngredients = this.ingredients;
+        this.isLoaded = true;
+      });
   }
 
   protected toggleDropdown(): void {
@@ -51,9 +59,9 @@ export class IngredientsPageComponent implements OnInit {
 
   private _filterIngredients(): void {
     const filteringById = this.searchText.match("^[0-9]+$");
-    this.filteredIngredients = ingredients.filter(ingredient =>
+    this.filteredIngredients = this.ingredients.filter(ingredient =>
       (this.selectedType === 'Все типы продуктов' || ingredient.type === this.selectedType)
-      && (!filteringById && (this.searchText === '' || ingredient.name.toLowerCase().includes(this.searchText.toLowerCase()))
+      && (!filteringById && (this.searchText === '' || ingredient.title.toLowerCase().includes(this.searchText.toLowerCase()))
         || filteringById && Number(this.searchText) === ingredient.id)
     );
   }
@@ -83,10 +91,10 @@ export class IngredientsPageComponent implements OnInit {
 
   protected submitVolumeChange(event: any, ingredientId: number): void {
     const volumeChangeAmount = Number(event.target.volume.value);
-    ingredients[ingredientId].volume += volumeChangeAmount;
 
-    // ... запрос на обновление объёма продукта
+    this._consoleApi.changeIngredientCountByID({ delta_count: volumeChangeAmount, id: ingredientId });
 
+    this.ingredients.filter(ingredient => ingredient.id == ingredientId)[0].count += volumeChangeAmount;
     this.selectedIngredientId = -1;
   }
 }
