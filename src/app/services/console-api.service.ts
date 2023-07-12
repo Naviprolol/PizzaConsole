@@ -20,7 +20,7 @@ export class ConsoleApiService {
 
   public constructor(private httpClient: HttpClient) {}
 
-  // СЕРВИС НЕ ПРОТЕСТИРОВАН ПОЛНОСТЬЮ
+  // СЕРВИС НЕ ПРОТЕСТИРОВАН
 
   // Address
   public getAddressByID(params: { id: number }): Observable<AddressDto> {
@@ -170,22 +170,22 @@ export class ConsoleApiService {
 
   // ConsoleUsers
   public registration(params: { first_name: string, surname: string, middle_surname: string,
-    phone: number | string, email: string, password: string}): Observable<string> {
-    return this.httpClient.post<string>(`${this._serverUrl}/consoleUsers/registration`,
+    phone: number | string, email: string, password: string}): Observable<{ access_token: string }> {
+    return this.httpClient.post<{ access_token: string }>(`${this._serverUrl}/consoleUsers/registration`,
       {
         params: { ...params },
       });
   }
 
-  public login(params: { email: string, password: string}): Observable<string> {
-    return this.httpClient.post<string>(`${this._serverUrl}/consoleUsers/login`,
+  public login(params: { email: string, password: string}): Observable<{ access_token: string }> {
+    return this.httpClient.post<{ access_token: string }>(`${this._serverUrl}/consoleUsers/login`,
       {
         params: { ...params },
       });
   }
 
-  public auth(params: { email: string, password: string}): Observable<string> {
-    return this.httpClient.get<string>(`${this._serverUrl}/consoleUsers/auth`,
+  public auth(params: { email: string, password: string}): Observable<{ access_token: string }> {
+    return this.httpClient.get<{ access_token: string }>(`${this._serverUrl}/consoleUsers/auth`,
       {
         params: { ...params },
       });
