@@ -14,8 +14,38 @@ export class AuthService {
 
   }
 
-  // login(email: string, password: string): Observable<{ access_token: string }> {
+  login(email: string, password: string): Observable<{ access_token: string }> {
 
+    const data = {
+      email: email,
+      password: password
+    }
 
-  // }
+    return this.http.post<{ access_token: string }>('https://pizza-console.onrender.com/api/consoleUsers/login', data).pipe(
+      tap(
+        (token) => {
+          localStorage.setItem('auth-token', token.access_token)
+          this.setToken(token.access_token)
+          console.log(token.access_token)
+        }
+      )
+    )
+  }
+
+  setToken(token: string | null) {
+    this.token = token
+  }
+
+  getToken(): string {
+    return this.token
+  }
+
+  isAuthenticated(): boolean {
+    return !!this.token
+  }
+
+  logout() {
+    this.setToken(null)
+    localStorage.clear()
+  }
 }

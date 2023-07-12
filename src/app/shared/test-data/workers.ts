@@ -3,7 +3,7 @@ import { IWorker } from "../interfaces/worker.interface";
 export const workers: IWorker[] = [
   {
     id: 1,
-    name: 'Алексей',
+    first_name: 'Алексей',
     surname: 'Тихонов',
     salary: 40000,
     jobTitle: 'Курьер',
@@ -12,7 +12,7 @@ export const workers: IWorker[] = [
 
   {
     id: 2,
-    name: 'Кирилл',
+    first_name: 'Кирилл',
     surname: 'Назаров',
     salary: 70000,
     jobTitle: 'Повар',
@@ -21,7 +21,7 @@ export const workers: IWorker[] = [
 
   {
     id: 3,
-    name: 'Екатерина',
+    first_name: 'Екатерина',
     surname: 'Старкова',
     salary: 65000,
     jobTitle: 'Повар',
@@ -30,7 +30,7 @@ export const workers: IWorker[] = [
 
   {
     id: 4,
-    name: 'Иван',
+    first_name: 'Иван',
     surname: 'Телегин',
     salary: 45000,
     jobTitle: 'Курьер',
@@ -39,7 +39,7 @@ export const workers: IWorker[] = [
 
   {
     id: 5,
-    name: 'Вадим',
+    first_name: 'Вадим',
     surname: 'Рощин',
     salary: 90000,
     jobTitle: 'Менеджер',
