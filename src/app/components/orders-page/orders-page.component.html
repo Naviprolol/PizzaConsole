@@ -35,7 +35,7 @@
           <th>ID</th>
           <th class="align-center">Время</th>
           <th>Клиент</th>
-          <th>Номер телефона</th>
+          <th class="align-center">Номер телефона</th>
           <th class="align-center table__volume-cell">Сумма</th>
           <th class="align-center">Статус</th>
           <th class="align-last"></th>
@@ -55,7 +55,7 @@
             {{ order.status }}
           </td>
           <td class="align-center">
-            <div class="btn">
+            <div class="btn" (click)="editOrder(order)">
                 Управление
             </div>
           </td>

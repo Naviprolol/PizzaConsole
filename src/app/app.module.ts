@@ -9,12 +9,12 @@ import { ProductsPageComponent } from './components/products-page/products-page.
 import { StaffPageComponent } from './components/staff-page/staff-page.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { NavComponent } from './components/nav/nav.component';
+import { ModalService } from './services/modal.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
-    OrdersPageComponent,
     ProductsPageComponent,
     StaffPageComponent,
     NotFoundPageComponent,

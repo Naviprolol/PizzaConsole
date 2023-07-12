@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import { IOrder } from 'src/app/shared/interfaces/order.interface';
 import { orders } from 'src/app/shared/test-data/orders';
 import { colorByType } from 'src/app/shared/orders-info';
+import { OrderModalComponent } from '../modals/order-modal/order-modal.component';
+import { ModalService } from 'src/app/services/modal.service';
 
 
 @Component({
@@ -19,6 +21,12 @@ export class OrdersPageComponent implements OnInit {
   protected readonly types: string[] = ['Все статусы', ...Object.keys(colorByType)];
   protected readonly colorByType = colorByType;
   protected filteredProducts: IOrder[] = [];
+
+  constructor(private _modalService: ModalService) {}
+
+  public editOrder(order: any): void {
+    this._modalService.openModal(OrderModalComponent, order.name);
+  }
 
   public ngOnInit(): void {
     this.filteredProducts = orders;
