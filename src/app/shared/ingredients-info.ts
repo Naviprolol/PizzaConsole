@@ -1,4 +1,4 @@
-export const productsInfo: { [key: string]: { [key: string]: string } } = {
+export const ingredientsInfo: { [key: string]: { [key: string]: string } } = {
   'Коробки под пиццу': { imagePath: 'pizza-box.png', type: 'Прочее'},
   'Салфетки': { imagePath: 'wipes.png', type: 'Прочее'},
   'Тесто': { imagePath: 'dough.png', type: 'Тесто'},

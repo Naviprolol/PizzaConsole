@@ -7,7 +7,7 @@ import { colorByType } from 'src/app/shared/orders-info';
 @Component({
   selector: 'app-orders-page',
   templateUrl: './orders-page.component.html',
-  styleUrls: ['../products-page/products-page.component.css', './orders-page.component.css']
+  styleUrls: ['../ingredients-page/ingredients-page.component.css', './orders-page.component.css']
 })
 export class OrdersPageComponent implements OnInit {
   protected isDropdownOpen: boolean = false;
@@ -41,7 +41,7 @@ export class OrdersPageComponent implements OnInit {
   private filterProducts(): void {
     this.filteredProducts = orders.filter(order =>
       (this.selectedType === 'Все статусы' || order.status === this.selectedType)
-      && (this.searchText === '' || (order.name + order.surname).toLowerCase().includes(this.searchText.toLowerCase()) 
+      && (this.searchText === '' || (order.name + order.surname).toLowerCase().includes(this.searchText.toLowerCase())
       || String(order.id).toLowerCase().includes(this.searchText.toLowerCase()))
     );
   }

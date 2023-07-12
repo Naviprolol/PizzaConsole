@@ -1,6 +1,5 @@
-export interface IProduct {
+export interface IPromotion {
   id: number
   name: string
-  availability: boolean
   description: string
 }
