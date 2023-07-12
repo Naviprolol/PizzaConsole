@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { products as data } from 'src/app/shared/test-data/products';
-import { IProduct } from 'src/app/shared/interfaces/product.interface';
+import { ingredients as data } from 'src/app/shared/test-data/ingredients';
+import { IIngredient } from 'src/app/shared/interfaces/ingredient.interface';
 import { productsInfo } from 'src/app/shared/orders-info';
 
 @Component({
@@ -9,7 +9,7 @@ import { productsInfo } from 'src/app/shared/orders-info';
   styleUrls: ['./notifications-page.component.css']
 })
 export class NotificationsPageComponent implements OnInit {
-  products: IProduct[] = data;
+  products: IIngredient[] = data;
   notifications: any[] = [];
 
   ngOnInit(): void {

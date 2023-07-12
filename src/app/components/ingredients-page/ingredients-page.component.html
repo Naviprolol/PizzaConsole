@@ -1,10 +1,10 @@
 <div class="products__container">
   <div class="products__input-container">
     <div class="products__search">
-      <input class="search__input" type="text" placeholder="Поиск продукта..." name="search" id="search"
+      <input class="search__input" type="text" placeholder="Поиск ингредиента..." name="search" id="search"
              [(ngModel)]="searchText"
              (input)="filterByName()">
-      <label class="search__label" for="search">Введите название или id продукта</label>
+      <label class="search__label" for="search">Введите название или id ингредиента</label>
     </div>
     <div class="products__type-select">
       <div class="type-select__container"
@@ -25,11 +25,11 @@
           </div>
         </div>
       </div>
-      <h5 class="type-select__label">Выберите должность</h5>
+      <h5 class="type-select__label">Выберите тип ингредиента</h5>
     </div>
   </div>
 
-  <table class="products__table" *ngIf="isLoaded else productsNotLoaded">
+  <table class="products__table" *ngIf="isLoaded else ingredientsNotLoaded">
     <thead>
       <tr class="table__header">
         <th>ID</th>
@@ -37,48 +37,48 @@
         <th>Название</th>
         <th>Тип</th>
         <th class="align-center table__volume-cell">Объем</th>
-        <th class="align-center">Последнее обновление</th>
       </tr>
     </thead>
     <tbody>
       <tr class="table__row"
-          [ngStyle]="{'background-color': colorByType[product.type] + (product.id === hoveredProductId ? 'AA' : 'FF'),
-            'cursor': product.id === selectedProductId ? 'initial' : 'pointer'}"
-          (click)="selectProduct(product.id)"
-          (mouseenter)="rowMouseEnter(product.id)"
+          [ngStyle]="{'background-color': colorByType[ingredient.type] + (ingredient.id === hoveredIngredientId ? 'AA' : 'FF'),
+            'cursor': ingredient.id === selectedIngredientId ? 'initial' : 'pointer'}"
+          (click)="selectIngredient(ingredient.id)"
+          (mouseenter)="rowMouseEnter(ingredient.id)"
           (mouseleave)="rowMouseLeave()"
-          *ngFor="let product of filteredProducts">
-        <td>{{ product.id }}</td>
+          *ngFor="let ingredient of filteredIngredients">
+        <td>{{ ingredient.id }}</td>
         <td class="align-center">
-          <img class="table__img" [attr.src]="'assets/img/products/' + product.imagePath" alt="Изображение"
+          <img class="table__img" [attr.src]="'assets/img/ingredients/' + ingredient.imagePath" alt="Изображение"
                width="80" height="80">
         </td>
-        <td>{{ product.name }}</td>
-        <td>{{ product.type }}</td>
+        <td>{{ ingredient.title }}</td>
+        <td>{{ ingredient.type }}</td>
         <td class="align-center table__volume-cell">
-          <ng-container *ngIf="product.id !== selectedProductId">
-            {{ product.volume | number:'1.0-1' }} {{ product.type | volumeCalculus }}.
+          <ng-container *ngIf="ingredient.id !== selectedIngredientId">
+            {{ ingredient.count | number:'1.0-1' }} {{ ingredient.type | volumeCalculus }}.
           </ng-container>
-          <form class="volume-changer__form" *ngIf="product.id === selectedProductId">
+          <form class="volume-changer__form"
+                (ngSubmit)="submitVolumeChange($event, ingredient.id)"
+                *ngIf="ingredient.id === selectedIngredientId">
             <button class="volume-changer__dismiss" (click)="dismissVolumeChange()" appClickStopPropagation>✕</button>
             <div class="volume-changer__container">
               <p class="volume-changer__placeholder">
-                {{ product.volume | number:'1.0-1' }} {{ product.type | volumeCalculus }}
+                {{ ingredient.count | number:'1.0-1' }} {{ ingredient.type | volumeCalculus }}
               </p>
               <p class="volume-changer__placeholder">+</p>
               <input class="volume-changer__input" type="number" min="0" max="1000"
-                     placeholder="" name="volume" required [id]="'volume-' + product.id">
-              <p class="volume-changer__placeholder">{{ product.type | volumeCalculus }}</p>
+                     placeholder="" name="volume" required [id]="'volume-' + ingredient.id">
+              <p class="volume-changer__placeholder">{{ ingredient.type | volumeCalculus }}</p>
             </div>
-            <button class="volume-changer__submit" (click)="submitVolumeChange()" appClickStopPropagation>✓</button>
+            <button class="volume-changer__submit" type="submit" appClickStopPropagation>✓</button>
           </form>
         </td>
-        <td class="align-center">{{ product.latestChange | date:'HH:mm:ss, dd MMM, y'}}</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<ng-template #productsNotLoaded>
+<ng-template #ingredientsNotLoaded>
   <h2 class="products__loading-text">Загрузка...</h2>
 </ng-template>
