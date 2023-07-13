@@ -1,0 +1,19 @@
+<div class="notification-page">
+  <ul class="notification-list">
+    <li class="notification-item notification-out-of-products" *ngFor="let notification of notifications"
+      [ngClass]="{'attention': notification.product.volume <= 0}">
+      <div class="notification-content">
+        <div class="notification-icon">
+          <img [attr.src]="'assets/img/ingredients/' + notification.product.imagePath" alt="low-stock-icon">
+        </div>
+        <div class="notification-text">
+          <h3 *ngIf="notification.product.volume <= 0">Закончился ингредиент</h3>
+          <h3 *ngIf="notification.product.volume > 0">Заканчивается ингредиент</h3>
+          <p>{{ notification.product.name }} - {{ notification.product.volume }}
+            {{ notification.product.type | volumeCalculus }}</p>
+        </div>
+        <button type="button">Удалить уведомление</button>
+      </div>
+    </li>
+  </ul>
+</div>

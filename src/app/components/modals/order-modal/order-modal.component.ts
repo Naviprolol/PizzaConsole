@@ -22,6 +22,9 @@ export class OrderModalComponent {
     protected readonly colorByType = colorByType;
     protected filteredProducts: IOrder[] = [];
 
+    constructor(private _modalService: ModalService) {
+    }
+
     protected toggleDropdown(): void {
         this.isDropdownOpen = !this.isDropdownOpen;
       }
@@ -30,12 +33,16 @@ export class OrderModalComponent {
         this.selectedType = type;
     }
 
-    constructor(private _modalService: ModalService) {
-    }
-
     public deleteOrder(): void {
         this.data.status = 'Отменён';
         orders.splice(orders.findIndex(obj => obj.id === this.data.id), 1)
+        this._modalService.closeModal();
+    }
+
+    public changeOrder(): void {
+        if (this.selectedType !== 'Все статусы') {
+            this.data.status = this.selectedType;
+        }
         this._modalService.closeModal();
     }
 

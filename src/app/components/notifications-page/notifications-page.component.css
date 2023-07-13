@@ -1,0 +1,72 @@
+.notification-page {
+  padding: 5.21vw;
+}
+
+.notification-list {
+  list-style: none;
+  padding: 0;
+}
+
+.notification-item {
+  height: 2vh;
+  background-color: rgba(189, 243, 220, 0.25);
+  border-radius: 10px;
+  padding: 1.5vw;
+  margin-bottom: 0.5vh;
+}
+
+.attention {
+  background-color: #FF3737;
+}
+
+.notification-content {
+  display: flex;
+  align-items: center;
+  gap: 4vh;
+  height: 100%;
+  /* Добавлено */
+}
+
+.notification-icon {
+  width: 2.5vw;
+  height: 2.5vw;
+  display: flex;
+  /* Добавлено */
+  align-items: center;
+  /* Добавлено */
+}
+
+.notification-icon img {
+  width: 100%;
+  height: auto;
+  /* Исправлено */
+  max-height: 100%;
+  /* Добавлено */
+}
+
+.notification-text {
+  flex: 1;
+  /* Добавлено */
+  display: flex;
+  /* Добавлено */
+  flex-direction: column;
+  /* Добавлено */
+  justify-content: center;
+  /* Добавлено */
+}
+
+.notification-text h3 {
+  font-size: 1.041vw;
+  font-weight: 600;
+  line-height: 1.852vh;
+  color: #000;
+  margin: 0;
+}
+
+.notification-text p {
+  font-size: 0.834vw;
+  font-weight: 400;
+  line-height: 1.85vh;
+  color: #0B1F35;
+  margin: 0;
+}

@@ -34,9 +34,10 @@
     <div *ngFor="let worker of filteredWorkers" class="worker">
       <div class="first-part">
         <div class="worker-img">
-          <img src="{{worker.photo}}" alt="worker-img">
+          <img src="/assets/img/courier.svg" alt="worker-img" *ngIf="worker.jobTitle === 'Курьер'">
+          <img src="/assets/img/chef.svg" alt="worker-img" *ngIf="worker.jobTitle === 'Повар'">
         </div>
-        <h3> {{ worker.name + ' ' + worker.surname }} </h3>
+        <h3> {{ worker.first_name + ' ' + worker.surname }} </h3>
       </div>
 
       <div class="worker-information">

@@ -1,8 +1,8 @@
 export interface IWorker {
   id: number
-  name: string
-  surname: string
+  first_name: string
+  surname?: string
   salary: number
-  jobTitle: string
-  photo: string
+  jobTitle?: string
+  photo?: string
 }

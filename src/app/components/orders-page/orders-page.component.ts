@@ -4,23 +4,25 @@ import { orders } from 'src/app/shared/test-data/orders';
 import { colorByType } from 'src/app/shared/orders-info';
 import { OrderModalComponent } from '../modals/order-modal/order-modal.component';
 import { ModalService } from 'src/app/services/modal.service';
+import { OrderDto } from 'src/app/shared/dto/order.dto';
 
 
 @Component({
   selector: 'app-orders-page',
   templateUrl: './orders-page.component.html',
-  styleUrls: ['../products-page/products-page.component.css', './orders-page.component.css']
+  styleUrls: ['../ingredients-page/ingredients-page.component.css', './orders-page.component.css']
 })
 export class OrdersPageComponent implements OnInit {
   protected isDropdownOpen: boolean = false;
   protected isLoaded: boolean = false;
 
+  protected orders: OrderDto[] = [];
   protected searchText: string = '';
   protected selectedType: string = 'Все статусы';
 
   protected readonly types: string[] = ['Все статусы', ...Object.keys(colorByType)];
   protected readonly colorByType = colorByType;
-  protected filteredProducts: IOrder[] = [];
+  protected filteredOrders: IOrder[] = [];
   
 
   constructor(private _modalService: ModalService) {}
@@ -30,7 +32,7 @@ export class OrdersPageComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.filteredProducts = orders;
+    this.filteredOrders = orders;
     this.isLoaded = true;
   }
 
@@ -40,17 +42,17 @@ export class OrdersPageComponent implements OnInit {
 
   protected toggleType(type: string): void {
     this.selectedType = type;
-    this.filterProducts();
+    this.filterOrders();
   }
 
   protected filterByName(): void {
-    this.filterProducts();
+    this.filterOrders();
   }
 
-  private filterProducts(): void {
-    this.filteredProducts = orders.filter(order =>
+  private filterOrders(): void {
+    this.filteredOrders = orders.filter(order =>
       (this.selectedType === 'Все статусы' || order.status === this.selectedType)
-      && (this.searchText === '' || (order.name + order.surname).toLowerCase().includes(this.searchText.toLowerCase()) 
+      && (this.searchText === '' || (order.name + order.surname).toLowerCase().includes(this.searchText.toLowerCase())
       || String(order.id).toLowerCase().includes(this.searchText.toLowerCase()))
     );
   }

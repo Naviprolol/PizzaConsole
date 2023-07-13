@@ -1,4 +1,4 @@
-export const productsInfo: { [key: string]: { [key: string]: string } } = {
+export const ingredientsInfo: { [key: string]: { [key: string]: string } } = {
   'Коробки под пиццу': { imagePath: 'pizza-box.png', type: 'Прочее'},
   'Салфетки': { imagePath: 'wipes.png', type: 'Прочее'},
   'Тесто': { imagePath: 'dough.png', type: 'Тесто'},
@@ -21,6 +21,8 @@ export const productsInfo: { [key: string]: { [key: string]: string } } = {
   'Оливковое масло': { imagePath: 'olive-oil.png', type: 'Масла'},
   'Масло чесночное (бокс)': { imagePath: 'garlic-oil.png', type: 'Масла'},
   'Масло перцовое (бокс)': { imagePath: 'pepper-oil.png', type: 'Масла'},
+  // тест
+  'Сыр': { imagePath: 'mozzarella-cheese.png', type: 'Сыры'},
 }
 
 export const colorByType: { [key: string]: string } = {
