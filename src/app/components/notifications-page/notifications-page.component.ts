@@ -29,7 +29,6 @@ export class NotificationsPageComponent implements OnInit {
         ingredient.imagePath = ingredientsInfo[ingredient.title]['imagePath'];
         ingredient.type = ingredientsInfo[ingredient.title]['type'];
       })
-      console.log(ingredients)
 
       this.api.checkAllIngredientsCount().subscribe(alerts => {
         const alertsString = String(alerts.alerts);

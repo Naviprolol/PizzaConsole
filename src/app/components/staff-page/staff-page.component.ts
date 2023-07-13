@@ -40,7 +40,6 @@ export class StaffPageComponent implements OnInit {
       }
     })
 
-    console.log(this.workers)
 
     this.filteredWorkers = this.workers;
   }
