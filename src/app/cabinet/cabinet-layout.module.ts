@@ -22,7 +22,7 @@ import { OrdersPageComponent } from '../components/orders-page/orders-page.compo
     routing,
     CommonModule,
     FormsModule,
-    NgOptimizedImage
+    NgOptimizedImage,
   ],
   providers: [ModalService],
 })

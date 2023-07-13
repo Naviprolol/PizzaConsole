@@ -4,17 +4,27 @@ import { colorByType } from "src/app/shared/orders-info";
 import { OrderDto } from "../../../shared/dto/order.dto";
 import { ConsoleApiService } from "../../../services/console-api.service";
 import { firstValueFrom } from "rxjs";
+import { animate, style, transition, trigger } from "@angular/animations";
 // import { IOrder } from "src/app/shared/interfaces/order.interface";
 // import { orders } from "src/app/shared/test-data/orders";
 
 @Component({
     selector: 'app-order-modal',
     templateUrl: 'order-modal.component.html',
-    styleUrls: ['order-modal.component.css']
+    styleUrls: ['order-modal.component.css'],
+    animations: [
+        trigger('modalAnimation', [
+          transition(':enter', [
+            style({ opacity: 0, transform: 'scale(0.5)' }),
+            animate('300ms', style({ opacity: 1, transform: 'scale(1)' }))
+          ]),
+        ])
+    ]
 })
 export class OrderModalComponent {
     @Input() data!: OrderDto;
 
+    public animateStatus: string = ':enter';
     protected isDropdownOpen: boolean = false;
     protected isLoaded: boolean = false;
 
