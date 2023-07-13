@@ -1,7 +1,7 @@
 .input-containers {
   display: flex;
   gap: 3.6458vw;
-  margin-bottom: 9.537vh;
+  margin-bottom: 50px;
 }
 
 .find {
@@ -183,4 +183,11 @@
 
 .spc-btwn-inf .value {
   text-align: center;
+}
+
+.staff__loading-text {
+  color: #0B1F35;
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 2.6rem;
 }
