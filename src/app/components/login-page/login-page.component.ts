@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { AuthService } from 'src/app/services/auth.service';
+import { ConsoleApiService } from 'src/app/services/console-api.service';
 
 @Component({
   selector: 'app-login-page',
@@ -16,7 +16,7 @@ export class LoginPageComponent implements OnInit {
   isSuccessful: boolean = false;
   isError: boolean = false;
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private router: Router, private api: ConsoleApiService) { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -34,7 +34,7 @@ export class LoginPageComponent implements OnInit {
   onSubmit() {
     this.form.disable();
 
-    this.aSub = this.auth.login(this.form.value.email, this.form.value.password).subscribe(
+    this.aSub = this.api.login({ email: this.form.value.email, password: this.form.value.password }).subscribe(
       () => {
         this.isError = false;
         this.isSuccessful = true;

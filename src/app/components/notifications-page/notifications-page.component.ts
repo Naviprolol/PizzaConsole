@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ingredients as data, ingredients } from 'src/app/shared/test-data/ingredients';
 import { IIngredient } from 'src/app/shared/interfaces/ingredient.interface';
 import { productsInfo } from 'src/app/shared/orders-info';
 import { ConsoleApiService } from 'src/app/services/console-api.service';
 import { IngredientDto } from 'src/app/shared/dto/ingredient.dto';
+import { ingredientsInfo } from "../../shared/ingredients-info";
+
 
 @Component({
   selector: 'app-notifications-page',
@@ -11,8 +12,10 @@ import { IngredientDto } from 'src/app/shared/dto/ingredient.dto';
   styleUrls: ['./notifications-page.component.css']
 })
 export class NotificationsPageComponent implements OnInit {
-  notifications: any[] = [];
-  ingredients: IngredientDto[] = [];
+  protected ingredients: IngredientDto[] = [];
+
+  emptyIngredients: IngredientDto[] = [];
+  alerts: number[] = [];
 
   constructor(private api: ConsoleApiService) {
 
@@ -22,7 +25,22 @@ export class NotificationsPageComponent implements OnInit {
 
     this.api.getIngredients().subscribe(ingredients => {
       this.ingredients = ingredients
-      console.log(this.ingredients)
+      this.ingredients.forEach(ingredient => {
+        ingredient.imagePath = ingredientsInfo[ingredient.title]['imagePath'];
+        ingredient.type = ingredientsInfo[ingredient.title]['type'];
+      })
+      console.log(ingredients)
+
+      this.api.checkAllIngredientsCount().subscribe(alerts => {
+        const alertsString = String(alerts.alerts);
+        const alertsArray = alertsString.split(' ').map(Number);
+
+        for (let ingredient of this.ingredients) {
+          if (alertsArray.includes(ingredient.id)) {
+            this.emptyIngredients.push(ingredient)
+          }
+        }
+      })
     })
 
     this.outOfIngredients();

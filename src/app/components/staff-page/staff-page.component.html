@@ -47,15 +47,15 @@
           <div class="id-value value">{{ worker.id }}</div>
         </div>
 
-        <div class="worker-salary spc-btwn-inf" *ngIf="worker.jobTitle !== 'Менеджер'">
+        <div class="worker-salary spc-btwn-inf">
           <div class="salary-key key">Зарплата:</div>
           <div class="salary-value value">{{ worker.salary }}</div>
         </div>
 
-        <div class="worker-salary spc-btwn-inf" *ngIf="worker.jobTitle === 'Менеджер'">
+        <!-- <div class="worker-salary spc-btwn-inf" *ngIf="worker.jobTitle === 'Менеджер'">
           <div class="salary-key key">Телефон:</div>
           <div class="salary-value value">{{ worker.phone }}</div>
-        </div>
+        </div> -->
 
         <div class="worker-jobTitle spc-btwn-inf">
           <div class="jobTitle-key key">Должность:</div>
