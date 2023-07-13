@@ -21,11 +21,12 @@ export class OrdersPageComponent implements OnInit {
   protected readonly types: string[] = ['Все статусы', ...Object.keys(colorByType)];
   protected readonly colorByType = colorByType;
   protected filteredProducts: IOrder[] = [];
+  
 
   constructor(private _modalService: ModalService) {}
 
-  public editOrder(order: any): void {
-    this._modalService.openModal(OrderModalComponent, order.name);
+  public editOrder(order: IOrder): void {
+    this._modalService.openModal(OrderModalComponent, order);
   }
 
   public ngOnInit(): void {
