@@ -58,10 +58,10 @@ export class OrderModalComponent {
     }
 
     private _sendUpdatedStatus() {
-        // firstValueFrom(this._consoleApi.changeOrderStatusByID(
-        //   {
-        //     id: this.data.id,
-        //     status: this.data.status
-        //   }));
+        firstValueFrom(this._consoleApi.changeOrderStatusByID(
+          {
+            id: this.data.id,
+            status: this.data.status
+          }));
     }
 }

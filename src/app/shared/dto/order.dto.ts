@@ -14,5 +14,7 @@ export class OrderDto {
     public user_name?: string,
     public user_surname?: string,
     public phone?: string | number,
+    public chef_fullname?: string,
+    public courier_fullname?: string,
   ) {}
 }
