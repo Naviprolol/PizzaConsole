@@ -126,9 +126,9 @@
   margin-bottom: 1.852vh;
 }
 
-.worker:nth-last-child(-n+4) {
+/* .worker:nth-last-child(-n+4) {
   margin-bottom: 0;
-}
+} */
 
 .first-part {
   display: flex;

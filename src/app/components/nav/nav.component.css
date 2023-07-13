@@ -56,7 +56,7 @@
 }
 
 .link-list__item--active path.yellow {
-  fill: yellow;
+  fill: none;
 }
 
 
