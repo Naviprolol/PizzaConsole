@@ -34,6 +34,13 @@ export class StaffPageComponent implements OnInit {
       }
     })
 
+    this.staffService.getAllAdmins().subscribe(admins => {
+      for (let admin of admins) {
+        admin.jobTitle = 'Менеджер'
+        this.workers.push(admin)
+      }
+    })
+
     console.log(this.workers)
 
     this.filteredWorkers = this.workers;

@@ -5,4 +5,5 @@ export interface IWorker {
   salary: number
   jobTitle?: string
   photo?: string
+  phone?: string
 }

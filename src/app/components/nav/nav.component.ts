@@ -14,13 +14,6 @@ export class NavComponent implements OnInit {
   notifications: any[] = [];
 
   ngOnInit(): void {
-    for (let ingredient of ingredients) {
-      if (ingredient.volume < 2) {
-        this.notifications.push({
-          type: 'out-of-products',
-          product: ingredient
-        });
-      }
-    }
+
   }
 }
