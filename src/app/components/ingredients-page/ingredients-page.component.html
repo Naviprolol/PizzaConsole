@@ -37,6 +37,7 @@
         <th>Название</th>
         <th>Тип</th>
         <th class="align-center table__volume-cell">Объем</th>
+        <th class="align-center">Минимальный объем</th>
       </tr>
     </thead>
     <tbody>
@@ -74,6 +75,7 @@
             <button class="volume-changer__submit" type="submit" appClickStopPropagation>✓</button>
           </form>
         </td>
+        <td>{{ ingredient.minimum_count }} {{ ingredient.type | volumeCalculus }}</td>
       </tr>
     </tbody>
   </table>
