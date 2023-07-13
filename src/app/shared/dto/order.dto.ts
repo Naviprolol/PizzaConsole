@@ -7,9 +7,12 @@ export class OrderDto {
     public address: string,
     public id_chef: number,
     public id_couriers: number,
-    public orderTime: number,
     public cost: number,
     public created_at: Date | string,
-    public update_at: Date | string,
+    public update_at?: Date | string,
+    public orderTime?: number,
+    public user_name?: string,
+    public user_surname?: string,
+    public phone?: string | number,
   ) {}
 }

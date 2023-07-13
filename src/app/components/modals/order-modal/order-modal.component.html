@@ -9,13 +9,13 @@
           </div>
           <div class="modal__descr">
             Номер заказа: {{data.id}}<br>
-            Имя заказчика: {{data.name}} {{data.surname}}<br>
-            Время: {{data.time}}<br>
-            Сумма: {{data.sum}}<br>
+            Имя заказчика: {{data.user_name}} {{data.user_surname}}<br>
+            Время: {{data.orderTime}}<br>
+            Сумма: {{data.cost}}<br>
             Статус: {{data.status}}<br>
 
           </div>
-          
+
           <div class="products__type-select">
             <div class="type-select__container"
                  [ngClass]="{'type-select--active': isDropdownOpen}"
@@ -47,7 +47,7 @@
           <span class="modal__close-line"></span>
         </button>
       </div>
-  
+
     </div>
   </div>
   <div class="modal__backdrop"></div>
