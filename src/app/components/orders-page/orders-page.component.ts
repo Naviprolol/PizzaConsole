@@ -16,7 +16,6 @@ export class OrdersPageComponent implements OnInit {
   protected isDropdownOpen: boolean = false;
   protected isLoaded: boolean = false;
 
-  protected orders: OrderDto[] = [];
   protected searchText: string = '';
   protected selectedType: string = 'Все статусы';
 
