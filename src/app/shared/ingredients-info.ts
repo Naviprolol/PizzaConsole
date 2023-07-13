@@ -22,10 +22,10 @@ export const ingredientsInfo: { [key: string]: { [key: string]: string } } = {
   'Масло чесночное (бокс)': { imagePath: 'garlic-oil.png', type: 'Масла' },
   'Масло перцовое (бокс)': { imagePath: 'pepper-oil.png', type: 'Масла' },
   // тест
-  'Сыр': { imagePath: 'mozzarella-cheese.png', type: 'Сыры' },
-  'Огурцы': { imagePath: 'green-onions.png', type: 'Овощи / фрукты' },
-  'Помидоры': { imagePath: 'tomato.png', type: 'Овощи / фрукты' },
-  'Колбаса': { imagePath: 'ham.png', type: 'Мясо' },
+  // 'Сыр': { imagePath: 'mozzarella-cheese.png', type: 'Сыры' },
+  // 'Огурцы': { imagePath: 'green-onions.png', type: 'Овощи / фрукты' },
+  // 'Помидоры': { imagePath: 'tomato.png', type: 'Овощи / фрукты' },
+  // 'Колбаса': { imagePath: 'ham.png', type: 'Мясо' },
 
 }
 

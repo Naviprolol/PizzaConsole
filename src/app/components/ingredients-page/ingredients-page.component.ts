@@ -5,6 +5,7 @@ import { colorByType, ingredientsInfo } from "../../shared/ingredients-info";
 import {ConsoleApiService} from "../../services/console-api.service";
 import {firstValueFrom} from "rxjs";
 import {IngredientDto} from "../../shared/dto/ingredient.dto";
+// import {ingredientsDto} from "../../shared/test-data/ingredients";
 
 
 @Component({
@@ -92,7 +93,9 @@ export class IngredientsPageComponent implements OnInit {
   protected submitVolumeChange(event: any, ingredientId: number): void {
     const volumeChangeAmount = Number(event.target.volume.value);
 
-    this._consoleApi.changeIngredientCountByID({ delta_count: volumeChangeAmount, id: ingredientId });
+    firstValueFrom(
+      this._consoleApi.changeIngredientCountByID({ delta_count: volumeChangeAmount, id: ingredientId })
+    );
 
     this.ingredients.filter(ingredient => ingredient.id == ingredientId)[0].count += volumeChangeAmount;
     this.selectedIngredientId = -1;
