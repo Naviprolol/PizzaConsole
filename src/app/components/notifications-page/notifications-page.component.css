@@ -1,3 +1,7 @@
+.notification-page {
+  margin-top: 75px;
+}
+
 .notification-list {
   list-style: none;
   padding: 0;
@@ -65,4 +69,11 @@
   line-height: 1.85vh;
   color: #0B1F35;
   margin: 0;
+}
+
+.notifications__loading-text {
+  color: #0B1F35;
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 2.6rem;
 }

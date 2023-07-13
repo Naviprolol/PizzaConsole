@@ -16,6 +16,7 @@ export class NotificationsPageComponent implements OnInit {
 
   emptyIngredients: IngredientDto[] = [];
   alerts: number[] = [];
+  isLoaded: boolean = false;
 
   constructor(private api: ConsoleApiService) {
 
@@ -39,6 +40,7 @@ export class NotificationsPageComponent implements OnInit {
             this.emptyIngredients.push(ingredient)
           }
         }
+        this.isLoaded = true;
       })
     })
 
