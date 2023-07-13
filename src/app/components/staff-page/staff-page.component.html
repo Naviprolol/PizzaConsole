@@ -30,7 +30,7 @@
     </div>
   </div>
 
-  <div class="staff-workers">
+  <div class="staff-workers" *ngIf="isLoaded else staffNotLoaded">
     <div *ngFor="let worker of filteredWorkers" class="worker">
       <div class="first-part">
         <div class="worker-img">
@@ -65,3 +65,7 @@
     </div>
   </div>
 </div>
+
+<ng-template #staffNotLoaded>
+  <h2 class="staff__loading-text">Загрузка...</h2>
+</ng-template>

@@ -6,7 +6,7 @@ import { AuthGuard } from "./shared/auth.guard";
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'cabinet/orders',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
   {

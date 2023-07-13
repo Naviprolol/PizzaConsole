@@ -1,4 +1,4 @@
-<div class="notification-page">
+<div class="notification-page" *ngIf="isLoaded else staffNotLoaded">
   <ul class="notification-list">
     <li class="notification-item notification-out-of-products" *ngFor="let ingredient of emptyIngredients"
       [ngClass]="{'attention': ingredient.count <= 0}">
@@ -15,3 +15,7 @@
     </li>
   </ul>
 </div>
+
+<ng-template #staffNotLoaded>
+  <h2 class="notifications__loading-text">Загрузка...</h2>
+</ng-template>

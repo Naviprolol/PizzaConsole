@@ -16,6 +16,7 @@ export class NotificationsPageComponent implements OnInit {
 
   emptyIngredients: IngredientDto[] = [];
   alerts: number[] = [];
+  isLoaded: boolean = false;
 
   constructor(private api: ConsoleApiService) {
 
@@ -29,7 +30,6 @@ export class NotificationsPageComponent implements OnInit {
         ingredient.imagePath = ingredientsInfo[ingredient.title]['imagePath'];
         ingredient.type = ingredientsInfo[ingredient.title]['type'];
       })
-      console.log(ingredients)
 
       this.api.checkAllIngredientsCount().subscribe(alerts => {
         const alertsString = String(alerts.alerts);
@@ -40,6 +40,7 @@ export class NotificationsPageComponent implements OnInit {
             this.emptyIngredients.push(ingredient)
           }
         }
+        this.isLoaded = true;
       })
     })
 
