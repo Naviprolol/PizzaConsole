@@ -145,7 +145,8 @@
   color: #000000;
 }
 
-.products__table td {
+.products__table td,
+.products__table td span{
   padding-left: 20px;
   vertical-align: middle;
   font-size: 18px;

@@ -56,9 +56,10 @@
         <td>{{ ingredient.title }}</td>
         <td>{{ ingredient.type }}</td>
         <td class="align-center table__volume-cell">
-          <ng-container *ngIf="ingredient.id !== selectedIngredientId">
+          <span [ngStyle]="{'color': ingredient.count < ingredient.minimum_count ? '#f00' : '#000'}"
+                *ngIf="ingredient.id !== selectedIngredientId">
             {{ ingredient.count | number:'1.0-1' }} {{ ingredient.type | volumeCalculus }}.
-          </ng-container>
+          </span>
           <form class="volume-changer__form"
                 (ngSubmit)="submitVolumeChange($event, ingredient.id)"
                 *ngIf="ingredient.id === selectedIngredientId">
@@ -75,7 +76,7 @@
             <button class="volume-changer__submit" type="submit" appClickStopPropagation>✓</button>
           </form>
         </td>
-        <td>{{ ingredient.minimum_count }} {{ ingredient.type | volumeCalculus }}</td>
+        <td class="align-center">{{ ingredient.minimum_count }} {{ ingredient.type | volumeCalculus }}</td>
       </tr>
     </tbody>
   </table>

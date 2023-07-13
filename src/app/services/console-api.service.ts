@@ -5,7 +5,6 @@ import {AddressDto} from "../shared/dto/address.dto";
 import {WorkerDto} from "../shared/dto/worker.dto";
 import {IngredientProductDto} from "../shared/dto/ingredient-product.dto";
 import {IngredientDto} from "../shared/dto/ingredient.dto";
-import {PutResponseDto} from "../shared/dto/put-response.dto";
 import {OrderDto} from "../shared/dto/order.dto";
 import {ProductOrderDto} from "../shared/dto/product-order.dto";
 import {ProductDto} from "../shared/dto/product.dto";
@@ -61,7 +60,7 @@ export class ConsoleApiService {
   }
 
   public createIngredient(params: { title: string, count: number }): Observable<IngredientDto> {
-    return this.httpClient.post<IngredientDto>(`${this._serverUrl}/ingredients/createIngredients`, params);
+    return this.httpClient.post<IngredientDto>(`${this._serverUrl}/ingredients/createIngredient`, params);
   }
 
   public changeMinimumCountByID(params: { id: number, minimum_count: number }): Observable<{ string: number[] }> {

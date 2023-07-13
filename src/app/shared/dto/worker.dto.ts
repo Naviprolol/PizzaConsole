@@ -3,6 +3,9 @@ export class WorkerDto {
     public id: number,
     public first_name: string,
     public salary: number,
-    public position?: string,
-  ) {}
+    public jobTitle: string,
+    public surname?: string,
+    public photo?: string,
+    public phone?: string | number,
+  ) { }
 }
