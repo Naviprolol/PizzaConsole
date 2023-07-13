@@ -15,6 +15,7 @@ export class StaffPageComponent implements OnInit {
   workers: IWorker[] = []
   searchText: string = '';
   filteredWorkers: IWorker[] = [];
+  isLoaded: boolean = false;
 
   constructor(private api: ConsoleApiService) { }
 
@@ -38,9 +39,8 @@ export class StaffPageComponent implements OnInit {
         admin.jobTitle = 'Менеджер'
         this.workers.push(admin)
       }
+      this.isLoaded = true;
     })
-
-    console.log(this.workers)
 
     this.filteredWorkers = this.workers;
   }
