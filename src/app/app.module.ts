@@ -9,7 +9,7 @@ import { IngredientsPageComponent } from './components/ingredients-page/ingredie
 import { StaffPageComponent } from './components/staff-page/staff-page.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { NavComponent } from './components/nav/nav.component';
-import { VolumeCalculusPipe } from "./shared/pipes/volumeCalculus.pipe";
+import { VolumeCalculusPipe } from './shared/pipes/volumeCalculus.pipe';
 import { ClickStopPropagationDirective } from './shared/directives/click-stop-propagation.directive';
 import { HttpClientModule } from "@angular/common/http";
 import { NotificationsPageComponent } from './components/notifications-page/notifications-page.component';
@@ -18,7 +18,6 @@ import { NotificationsPageComponent } from './components/notifications-page/noti
   declarations: [
     AppComponent,
     LoginPageComponent,
-    OrdersPageComponent,
     IngredientsPageComponent,
     StaffPageComponent,
     NotFoundPageComponent,

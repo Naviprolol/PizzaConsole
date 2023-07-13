@@ -144,7 +144,7 @@ export class ConsoleApiService {
 
   // ConsoleUsers
   public registration(params: { first_name: string, surname: string, middle_surname: string,
-    phone: number | string, email: string, password: string}): Observable<{ access_token: string }> {
+    phone: string | number, email: string, password: string}): Observable<{ access_token: string }> {
     return this.httpClient.post<{ access_token: string }>(`${this._serverUrl}/consoleUsers/registration`, params);
   }
 
@@ -160,7 +160,7 @@ export class ConsoleApiService {
     return this.httpClient.post<UserDto>(`${this._serverUrl}/consoleUsers/getByID`, params);
   }
 
-  public getUserByPhone(params: { phone: number | string}): Observable<UserDto> {
+  public getUserByPhone(params: { phone: string | number }): Observable<UserDto> {
     return this.httpClient.post<UserDto>(`${this._serverUrl}/consoleUsers/getByPhone`, params);
   }
 
@@ -173,11 +173,11 @@ export class ConsoleApiService {
   }
 
 
-  public changePhoneByPhone(params: { oldPhone: number | string, newPhone: number | string }): Observable<{ string: number[] }> {
+  public changePhoneByPhone(params: { oldPhone: string | number , newPhone: string | number }): Observable<{ string: number[] }> {
     return this.httpClient.put<{ string: number[] }>(`${this._serverUrl}/consoleUsers/changePhoneByPhone`, params);
   }
 
-  public changeEmailByPhone(params: { phone: number | string, newEmail: string}): Observable<{ string: number[] }> {
+  public changeEmailByPhone(params: { phone: string | number, newEmail: string}): Observable<{ string: number[] }> {
     return this.httpClient.put<{ string: number[] }>(`${this._serverUrl}/consoleUsers/changeEmailByPhone`, params);
   }
 
