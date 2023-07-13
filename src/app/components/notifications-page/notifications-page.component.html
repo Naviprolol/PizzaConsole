@@ -4,7 +4,7 @@
       [ngClass]="{'attention': notification.product.volume <= 0}">
       <div class="notification-content">
         <div class="notification-icon">
-          <img [attr.src]="'assets/img/products/' + notification.product.imagePath" alt="low-stock-icon">
+          <img [attr.src]="'assets/img/ingredients/' + notification.product.imagePath" alt="low-stock-icon">
         </div>
         <div class="notification-text">
           <h3 *ngIf="notification.product.volume <= 0">Закончился ингредиент</h3>
