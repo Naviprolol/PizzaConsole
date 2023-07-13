@@ -68,6 +68,7 @@ div {
     color: black;
     width: 24vw;
     font-size: 18px;
+    margin-bottom: 15px;
 }
 
 .modal__message {
@@ -115,7 +116,6 @@ div {
     display: flex;
     flex-direction: column;
     align-self: flex-start;
-    gap: 10px;
   }
   
   .products__type-select .type-select__container {

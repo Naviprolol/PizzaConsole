@@ -13,6 +13,7 @@ import { VolumeCalculusPipe } from './shared/pipes/volumeCalculus.pipe';
 import { ClickStopPropagationDirective } from './shared/directives/click-stop-propagation.directive';
 import { HttpClientModule } from "@angular/common/http";
 import { NotificationsPageComponent } from './components/notifications-page/notifications-page.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { NotificationsPageComponent } from './components/notifications-page/noti
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,4 @@
-<div class="modal">
+<div class="modal" [@modalAnimation]="animateStatus">
     <div class="modal__content">
       <div class="modal__header">
         <div class="modal__message">
@@ -39,7 +39,7 @@
                 </div>
               </div>
             </div>
-            <h5 class="type-select__label">Выберите должность</h5>
+            <h5 class="type-select__label">Выберите статус</h5>
           </div>
           <div class="modal__buttons">
             <button class="modal__button save" (click)="changeOrder()">Сохранить</button>
