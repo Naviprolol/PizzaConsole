@@ -12,7 +12,7 @@ export class StaffPageComponent implements OnInit {
   dropdownOpen: boolean = false;
   selectedRole: string = 'Все сотрудники';
   roles: string[] = ['Все сотрудники', 'Курьер', 'Повар', 'Менеджер'];
-  workers: IWorker[] = []
+  workers: IWorker[] = [];
   searchText: string = '';
   filteredWorkers: IWorker[] = [];
   isLoaded: boolean = false;
