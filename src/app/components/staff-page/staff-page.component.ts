@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { workers as data } from 'src/app/shared/test-data/workers';
 import { IWorker } from 'src/app/shared/interfaces/worker.interface';
-import { StaffService } from 'src/app/services/staff.service';
+import { ConsoleApiService } from 'src/app/services/console-api.service';
 
 @Component({
   selector: 'app-staff-page',
@@ -17,20 +16,27 @@ export class StaffPageComponent implements OnInit {
   searchText: string = '';
   filteredWorkers: IWorker[] = [];
 
-  constructor(private staffService: StaffService) { }
+  constructor(private api: ConsoleApiService) { }
 
   ngOnInit(): void {
-    this.staffService.getAllChefs().subscribe(chefs => {
+    this.api.getAllChefs().subscribe(chefs => {
       for (let chef of chefs) {
         chef.jobTitle = 'Повар'
         this.workers.push(chef)
       }
     })
 
-    this.staffService.getAllCouriers().subscribe(couriers => {
+    this.api.getAllCouriers().subscribe(couriers => {
       for (let courier of couriers) {
         courier.jobTitle = 'Курьер'
         this.workers.push(courier)
+      }
+    })
+
+    this.api.getAllUsers().subscribe(admins => {
+      for (let admin of admins) {
+        admin.jobTitle = 'Менеджер'
+        this.workers.push(admin)
       }
     })
 

@@ -19,4 +19,8 @@ export class StaffService {
     return this.http.get<IWorker[]>('https://pizza-console.onrender.com/api/couriers/getAllCouriers')
   }
 
+  getAllAdmins(): Observable<IWorker[]> {
+    return this.http.get<IWorker[]>('https://pizza-console.onrender.com/api/consoleUsers/getAll')
+  }
+
 }

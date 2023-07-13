@@ -122,3 +122,51 @@
   line-height: 2.22vh;
   font-size: 1.25vw;
 }
+
+.error-message,
+.success-message {
+  position: absolute;
+  width: 16.8vw;
+  top: 1vw;
+  right: 1vw;
+  padding: 0.625vw;
+  background-color: #0B1F35;
+  border-radius: 8px;
+}
+
+.error-message .error-container,
+.success-message .success-container {
+  display: flex;
+  align-items: center;
+}
+
+.error-message {
+  display: block;
+  color: #F15045;
+  font-size: 0.83vw;
+  line-height: 1.85vh;
+}
+
+.success-message {
+  display: block;
+  color: #12FF71;
+  font-size: 0.83vw;
+  line-height: 1.85vh;
+}
+
+.error-message .error-img {
+  width: 1.25vw;
+  height: 1.25vw;
+  margin-right: 0.625vw;
+}
+
+.success-message .success-img {
+  width: 1.25vw;
+  height: 1.25vw;
+  margin-right: 3vw;
+}
+
+.error-message .error-text,
+.success-message .success-text {
+  padding: 4px 0;
+}

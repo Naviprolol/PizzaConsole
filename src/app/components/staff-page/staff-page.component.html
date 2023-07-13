@@ -34,8 +34,9 @@
     <div *ngFor="let worker of filteredWorkers" class="worker">
       <div class="first-part">
         <div class="worker-img">
-          <img src="/assets/img/courier.svg" alt="worker-img" *ngIf="worker.jobTitle === 'Курьер'">
-          <img src="/assets/img/chef.svg" alt="worker-img" *ngIf="worker.jobTitle === 'Повар'">
+          <img src="/assets/img/staff/courier.svg" alt="worker-img" *ngIf="worker.jobTitle === 'Курьер'">
+          <img src="/assets/img/staff/chef.svg" alt="worker-img" *ngIf="worker.jobTitle === 'Повар'">
+          <img src="/assets/img/staff/manager.svg" alt="worker-img" *ngIf="worker.jobTitle === 'Менеджер'">
         </div>
         <h3> {{ worker.first_name + ' ' + worker.surname }} </h3>
       </div>
@@ -50,6 +51,11 @@
           <div class="salary-key key">Зарплата:</div>
           <div class="salary-value value">{{ worker.salary }}</div>
         </div>
+
+        <!-- <div class="worker-salary spc-btwn-inf" *ngIf="worker.jobTitle === 'Менеджер'">
+          <div class="salary-key key">Телефон:</div>
+          <div class="salary-value value">{{ worker.phone }}</div>
+        </div> -->
 
         <div class="worker-jobTitle spc-btwn-inf">
           <div class="jobTitle-key key">Должность:</div>
