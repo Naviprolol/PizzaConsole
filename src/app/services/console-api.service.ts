@@ -10,6 +10,7 @@ import {ProductOrderDto} from "../shared/dto/product-order.dto";
 import {ProductDto} from "../shared/dto/product.dto";
 import {PromotionDto} from "../shared/dto/promotion.dto";
 import {UserDto} from "../shared/dto/user.dto";
+import {User2Dto} from "../shared/dto/user2Dto";
 
 @Injectable({
   providedIn: 'root',
@@ -82,7 +83,7 @@ export class ConsoleApiService {
   }
 
   public changeOrderStatusByID(params: { id: number, status: string }): Observable<{ string: number[] }> {
-    return this.httpClient.put<{ string: number[] }>(`${this._serverUrl}/orders/changeStatucByID`, params);
+    return this.httpClient.put<{ string: number[] }>(`${this._serverUrl}/orders/changeStatusByID`, params);
   }
 
 
@@ -156,16 +157,16 @@ export class ConsoleApiService {
     return this.httpClient.post<{ access_token: string }>(`${this._serverUrl}/consoleUsers/auth`, params);
   }
 
-  public getUserByID(params: { id: number }): Observable<UserDto> {
-    return this.httpClient.post<UserDto>(`${this._serverUrl}/consoleUsers/getByID`, params);
+  public getUserByID(params: { id: number }): Observable<User2Dto> {
+    return this.httpClient.post<User2Dto>(`${this._serverUrl}/consoleUsers/getByID`, params);
   }
 
-  public getUserByPhone(params: { phone: string | number }): Observable<UserDto> {
-    return this.httpClient.post<UserDto>(`${this._serverUrl}/consoleUsers/getByPhone`, params);
+  public getUserByPhone(params: { phone: string | number }): Observable<User2Dto> {
+    return this.httpClient.post<User2Dto>(`${this._serverUrl}/consoleUsers/getByPhone`, params);
   }
 
-  public getUserByEmail(params: { email: string}): Observable<UserDto> {
-    return this.httpClient.post<UserDto>(`${this._serverUrl}/consoleUsers/getByEmail`, params);
+  public getUserByEmail(params: { email: string}): Observable<User2Dto> {
+    return this.httpClient.post<User2Dto>(`${this._serverUrl}/consoleUsers/getByEmail`, params);
   }
 
   public getAllUsers(): Observable<UserDto[]> {

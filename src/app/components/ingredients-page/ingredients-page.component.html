@@ -44,8 +44,9 @@
         (mouseleave)="rowMouseLeave()" *ngFor="let ingredient of filteredIngredients">
         <td>{{ ingredient.id }}</td>
         <td class="align-center">
-          <img class="table__img" [attr.src]="'assets/img/ingredients/' + ingredient.imagePath" alt="Изображение"
-            width="80" height="80">
+          <img class="table__img" alt="Изображение" width="80" height="80"
+               [attr.src]="'assets/img/ingredients/' + ingredient.imagePath"
+               *ngIf="ingredient.imagePath !== 'test-ingredient' else testIngredient">
         </td>
         <td>{{ ingredient.title }}</td>
         <td>{{ ingredient.type }}</td>
@@ -77,4 +78,8 @@
 
 <ng-template #ingredientsNotLoaded>
   <h2 class="products__loading-text">Загрузка...</h2>
+</ng-template>
+
+<ng-template #testIngredient>
+  Тест
 </ng-template>

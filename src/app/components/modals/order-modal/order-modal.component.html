@@ -12,6 +12,10 @@
             Имя заказчика: {{data.user_name}} {{data.user_surname}}<br>
             Время: {{data.orderTime}}<br>
             Сумма: {{data.cost}}<br>
+            <ng-container *ngIf="data.delivery">
+              Курьер: {{data.courier_fullname}}<br>
+            </ng-container>
+            Исполнитель: {{data.chef_fullname}}<br>
             Статус: {{data.status}}<br>
 
           </div>

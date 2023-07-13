@@ -36,8 +36,14 @@ export class IngredientsPageComponent implements OnInit {
         this.ingredients = ingredients;
         this.ingredients.sort((a: IngredientDto, b: IngredientDto) => a.id - b.id);
         this.ingredients.forEach(ingredient => {
-          ingredient.imagePath = ingredientsInfo[ingredient.title]['imagePath'];
-          ingredient.type = ingredientsInfo[ingredient.title]['type'];
+          if (ingredient.title in ingredientsInfo) {
+            ingredient.imagePath = ingredientsInfo[ingredient.title]['imagePath'];
+            ingredient.type = ingredientsInfo[ingredient.title]['type'];
+          }
+          else {
+            ingredient.imagePath = 'test-ingredient';
+            ingredient.type = 'Тест';
+          }
         });
 
         this.filteredIngredients = this.ingredients;
@@ -61,7 +67,7 @@ export class IngredientsPageComponent implements OnInit {
   private _filterIngredients(): void {
     const filteringById = this.searchText.match("^[0-9]+$");
     this.filteredIngredients = this.ingredients.filter(ingredient =>
-      (this.selectedType === 'Все типы продуктов' || ingredient.type === this.selectedType)
+      (this.selectedType === 'Все типы ингредиентов' || ingredient.type === this.selectedType)
       && (!filteringById && (this.searchText === '' || ingredient.title.toLowerCase().includes(this.searchText.toLowerCase()))
         || filteringById && Number(this.searchText) === ingredient.id)
     );

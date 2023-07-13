@@ -39,4 +39,5 @@ export const colorByType: { [key: string]: string } = {
   'Приправы': '#99FFC2',
   'Овощи / фрукты': '#A4FF8D',
   'Масла': '#FFC27B',
+  'Тест': '#fff',
 }

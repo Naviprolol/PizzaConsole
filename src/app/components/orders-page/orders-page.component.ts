@@ -5,9 +5,10 @@ import { colorByType } from 'src/app/shared/orders-info';
 import { OrderModalComponent } from '../modals/order-modal/order-modal.component';
 import { ModalService } from 'src/app/services/modal.service';
 import { OrderDto } from 'src/app/shared/dto/order.dto';
-import { firstValueFrom } from "rxjs";
+import { firstValueFrom} from "rxjs";
 import { ConsoleApiService } from "../../services/console-api.service";
-import {UserDto} from "../../shared/dto/user.dto";
+import { UserDto } from "../../shared/dto/user.dto";
+import {User2Dto} from "../../shared/dto/user2Dto";
 
 
 @Component({
@@ -38,33 +39,59 @@ export class OrdersPageComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    // setTimeout(() => {
-    //   this.filteredOrders = this.orders;
-    //   this.isLoaded = true;
-    // }, 3);
-    // firstValueFrom(this._consoleApi.getAllOrders())
-    //   .then(orders => {
-    //     this.orders = orders;
-    //     this.orders.sort((a: OrderDto, b: OrderDto) => a.id - b.id);
-    //     this.orders.forEach(order => {
-    //       firstValueFrom(this._consoleApi.getUserByID({ id: order.id_user })).
-    //         then(user => {
-    //           order.user_name = user.first_name;
-    //           order.user_surname = user.surname;
-    //           order.phone = user.phone;
-    //       })
-    //     });
-    //   });
+    const currentUsersId: Set<number> = new Set<number>();
+    const getUserPromises: Promise<User2Dto>[] = [];
 
-    this.orders = test_orders;
-    this.orders.sort((a: OrderDto, b: OrderDto) => a.id - b.id);
-    this.orders.forEach(order => {
-      order.user_name = test_user.first_name;
-      order.user_surname = test_user.surname;
-      order.phone = test_user.phone;
-    })
-    this.filteredOrders = this.orders;
-    this.isLoaded = true;
+    setTimeout(() => {
+      this.filteredOrders = this.orders;
+      this.isLoaded = true;
+    }, 2000);
+
+    // Да простит меня господь за эту херню
+
+    firstValueFrom(this._consoleApi.getAllOrders())
+      .then(orders => {
+        this.orders = orders;
+        this.orders.sort((a: OrderDto, b: OrderDto) => a.id - b.id);
+        this.orders.forEach(order => {
+          if (!currentUsersId.has(order.id_user)) {
+            currentUsersId.add(order.id_user);
+            getUserPromises.push(firstValueFrom(this._consoleApi.getUserByID({ id: order.id_user })));
+          }});
+        Promise.all(getUserPromises).then(users => {
+          users.forEach(user => {
+            for (let i = 0; i < this.orders.length; i++) {
+              if (user.user.id === this.orders[i].id_user) {
+                this.orders[i].user_name = user.user.first_name;
+                this.orders[i].user_surname = user.user.surname;
+                this.orders[i].phone = user.user.phone;
+              }
+            }
+          })
+        });
+        firstValueFrom(this._consoleApi.getAllChefs())
+          .then(chefs => {
+            chefs.forEach(chef => {
+              for (let i = 0; i < this.orders.length; i++) {
+                if (chef.id === this.orders[i].id_chef) {
+                  this.orders[i].chef_fullname = `${chef.first_name} ${chef.surname}`;
+                  break;
+                }
+              }
+            })
+          });
+        firstValueFrom(this._consoleApi.getAllCouriers())
+          .then(couriers => {
+            couriers.forEach(courier => {
+              for (let i = 0; i < this.orders.length; i++) {
+                if (courier.id === this.orders[i].id_chef) {
+                  this.orders[i].courier_fullname = `${courier.first_name} ${courier.surname}`;
+                  break;
+                }
+              }
+            })
+          });
+      });
   }
 
   protected toggleDropdown(): void {
@@ -89,15 +116,3 @@ export class OrdersPageComponent implements OnInit {
     );
   }
 }
-
-const test_orders: OrderDto[] = [
-  new OrderDto(3,"Принят", 1,true,"Ул. Мира, 19",
-    1,1,1999,"2023-07-12T04:16:01.056Z"),
-  new OrderDto(2,"Завершён",1,false,"Ул. Мира, 21",
-    2,2,2900,"2023-07-12T04:12:59.667Z"),
-];
-
-const test_user: UserDto = new UserDto(1, "89000000000",
-  "$2b$05$NMJ83iwIf1Op6a6gFpP2gOBrhItPpU/pOKd1sDEchNmvpm/Btbw/u",
-  "Рощин","Вадим", "Олегович",
-  "naviprololjr@mail.ru",21000);
